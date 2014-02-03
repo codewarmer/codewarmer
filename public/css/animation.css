@@ -1,0 +1,74 @@
+#comments .fakeinput,
+#comments .comment-block {
+		-webkit-transition: 0.5s linear all;
+		-moz-transition: 0.5s linear all;
+		-o-transition: 0.5s linear all;
+		transition: 0.5s linear all;
+		opacity: 1;
+}
+
+#comments .comment-block {
+		display: block !important;
+		max-height:500px;
+		overflow: hidden;
+		/* transition-delay: 0.5s; */
+		/* -webkit-transition-delay: 0.5s; */
+}
+
+#comments .fakeinput.ng-hide-add {
+		display: block !important;
+		/* position:absolute; */
+}
+
+#comments .comment-block.ng-hide {
+		opacity: 0;
+		display: block !important;
+		max-height: 0;
+		line-height:0;
+		font-size:0;
+		padding:0;
+		margin:0;
+}
+
+#comments .fakeinput.ng-hide {
+		opacity: 0;
+		height: 0;
+		padding: 0;
+		margin: 0;
+		/* line-height:0; */
+		/* font-size:0; */
+
+		display:block !important;
+}
+
+.reply-form.ng-enter,
+.reply-form.ng-enter textarea,
+.reply-form.ng-leave,
+.reply-form.ng-leave textarea {
+		-webkit-transition: 0.5s linear all;
+		-moz-transition: 0.5s linear all;
+		-o-transition: 0.5s linear all;
+		transition: 0.5s linear all;
+		overflow:hidden;
+}
+
+.reply-form.ng-enter,
+.reply-form.ng-leave.ng-leave-active {
+		opacity: 0;
+		font-size:0;
+		line-height:0;
+		max-height: 0;
+}
+
+.reply-form.ng-enter-active textarea {
+		max-height: 215px;
+}
+
+.reply-form.ng-enter.ng-enter-active,
+.reply-form.ng-leave {
+		opacity: 1;
+		max-height:500px;
+		font-size: 14px;
+		line-height: 1.428571429;
+}
+

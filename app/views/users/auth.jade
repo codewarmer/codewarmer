@@ -1,0 +1,20 @@
+extends ../layouts/default
+
+block content
+  .row
+    .col-sm-10.col-sm-offset-1
+      a(href="/auth/facebook")
+        img(src="/img/icons/facebook.png")
+      a(href="/auth/github")
+        img(src="/img/icons/github.png")
+      a(href="/auth/twitter")
+        img(src="/img/icons/twitter.png")
+      a(href="/auth/google")
+        img(src="/img/icons/google.png")
+    .col-sm-12
+      if message && message.length
+        .row
+          .fade.in.alert.alert-danger.col-sm-4.col-sm-offset-2
+            button.close(type="button", data-dismiss="alert") &times;
+            strong #{message}
+      block auth

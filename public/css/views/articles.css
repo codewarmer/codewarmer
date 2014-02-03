@@ -1,0 +1,57 @@
+h1 {
+    text-align:center
+}
+
+ul.articles li {
+		padding: 5px 15px;
+}
+
+ul.articles li.unpublished {border: 1px solid #C46565;background: #FAD9D9;}
+
+ul.articles .lead {
+		font-size:16px;
+}
+
+ul.articles h2{font-size:1.5em}
+
+li.L0,
+li.L1,
+li.L2,
+li.L3,
+li.L5,
+li.L6,
+li.L7,
+li.L8 { list-style-type: decimal; }
+
+.article-date {border-top: 1px solid #D6C899/*#ccc*/; margin-top: -5px; text-align: right; margin-bottom: 5px;}
+
+article h1 {margin-top:0}
+.tags {border-top: 1px solid #ccc;}
+.social-buttons div{display:inline-block;}
+.fb-like {margin-right: 35px;}
+/* #comments li {border-bottom: 1px solid #CCC; padding: 10px; background:#F7F7F7;} */
+/* #comments li:last-child {border-bottom:none;} */
+#comments li {position:relative}
+.connection {
+		border-left: 1px solid #D6C899/* #ccc */;
+		height: 50%;
+		position: absolute;
+		margin-top: -15px;
+		margin-left: 7px;
+		width: 8px;
+		border-bottom: 1px solid #D6C899/* #ccc */;
+}
+.connection.tail {
+		height:100%;
+		margin-top:0;
+		border-bottom:none;
+}
+.comment-container {padding: 10px;}
+#comments .text, #comments .reply {margin: 0 15px;}
+#comments .text {/* background: #cfcfcf;border: 1px solid #DDD; */ padding: 3px 0;}
+#comments .reply-indent {margin-left:15px; border-left: 1px solid #ccc;}
+.author-badge {background: rgb(187, 209, 189); padding: 0 4px; border-radius: 4px;}
+
+/* .reply-form, .comment-block {margin: 5px 0 0 5px;padding: 0 7px;border: 1px solid #ddd;background: #eee;} */
+.reply-form, .comment-block {margin: 5px 0 0 5px;padding: 0 7px;border: 1px solid #D6C899;background: #FFE5B5;}
+.reply-form .form-group {margin-bottom:10px;}

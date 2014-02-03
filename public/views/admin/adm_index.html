@@ -1,0 +1,17 @@
+<section ng-controller="adminCtrl">
+	<button class="btn btn-primqry" ng-click="refreshAll()">Refresh All</button>
+	<table class="table table-hover">
+		<thead><tr>
+			<th>URL</th>
+			<th>Snapshot Date</th>
+			<th>Refresh</th>
+		</tr></thead>
+		<tbody>
+			<tr ng-repeat="url in urls">
+				<td ng-bind="url.url"></td>
+				<td ng-bind="url.date | timeago"></td>
+				<td><a href="" ng-click="refreshUrl($index)">refresh</a></td>
+			</tr>
+		</tbody>
+	</table>
+</section>

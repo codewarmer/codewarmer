@@ -1,0 +1,12 @@
+<div class="right-nav box-shadow" ng-controller="rightNavCtrl">
+	<form class="search-form" action="" method="post" ng-submit="searchSubmit()">
+		<input class="form-control search-input" name="search" type="text" placeholder="Search" ng-model="search" />
+		<button class="search-button" type="submit" value=""><span class="glyphicon glyphicon-search"></span></button>
+	</form>
+	<h3>Themes</h3>
+	<ul class="tags-nav list-unstyled">
+		<li ng-repeat="tag in tags">
+			<a href="/tags/{{tag._id}}" ng-bind="tag._id+'('+tag.value+')'"></a>
+		</li>
+	</ul>
+</div>

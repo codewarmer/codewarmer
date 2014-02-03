@@ -1,0 +1,201 @@
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:fb="https://www.facebook.com/2008/fbml" itemscope="itemscope" itemtype="http://schema.org/Product"><head><style type="text/css">@charset "UTF-8";[ng\:cloak],[ng-cloak],[data-ng-cloak],[x-ng-cloak],.ng-cloak,.x-ng-cloak,.ng-hide{display:none !important;}ng\:form{display:block;}</style><style>.cke{visibility:hidden;}</style></head><body style="">
+
+  
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title ng-bind="getTitle()" class="ng-binding"></title>
+    <meta http-equiv="Content-type" content="text/html;charset=UTF-8" />
+    <meta name="keywords" content="" />
+    <meta name="description" content="" />
+    <meta name="fragment" content="!" />
+    <link href="/img/icons/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+    <meta property="fb:app_id" content="APP_ID" />
+    <meta property="og:title" content="" />
+    <meta property="og:description" content="" />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="APP_URL" />
+    <meta property="og:image" content="APP_LOGO" />
+    <meta property="og:site_name" content="BadGateway" />
+    <meta property="fb:admins" content="APP_ADMIN" />
+    <link rel="stylesheet" href="/lib/bootstrap/dist/css/bootstrap.css" />
+    <link rel="stylesheet" href="/lib/google-code-prettify/src/prettify.css" />
+    <link rel="stylesheet" href="/css/prettify_solarized.css" />
+    <link rel="stylesheet" href="/css/common.css" />
+    <link rel="stylesheet" href="/css/views/articles.css" />
+    <link rel="stylesheet" href="/css/animation.css" />
+    <!--if lt IE 9script(src='http://html5shim.googlecode.com/svn/trunk/html5.js')
+    -->
+  
+  
+    <!-- ngInclude: '/views/header.html' --><div data-ng-include="'/views/header.html'" class="navbar navbar-inverse navbar-fixed-top ng-scope"><div class="container ng-scope" data-ng-controller="HeaderController"> 
+	<div class="navbar-header">
+		
+		<button type="button" class="navbar-toggle collapsed" ng-click="toggleCollapsed()">
+			<span class="sr-only">Toggle navigation</span>
+			<span class="icon-bar"></span>
+			<span class="icon-bar"></span>
+			<span class="icon-bar"></span>
+		</button>
+		<a class="navbar-brand" href="http://localhost:3000/">Bad Gateway</a>
+	</div>
+	<div class="navbar-collapse collapse in" collapse="width&lt;768 &amp;&amp; isCollapsed" style="">
+		<!-- <ul class="nav navbar-nav"> -->
+    <!--   <li class="active"><a href="#">Home</a></li> -->
+    <!--   <li><a href="#about">About</a></li> -->
+    <!--   <li><a href="#contact">Contact</a></li> -->
+    <!-- </ul> -->
+		<ul class="nav navbar-nav">
+			<!-- ngRepeat: item in menu --><!-- ngIf: isLoggedIn() --><!-- end ngRepeat: item in menu -->
+		</ul>
+		<!-- ngIf: !isLoggedIn() --><ul class="nav navbar-nav navbar-right ng-scope" ng-if="!isLoggedIn()">
+			<li><a href="http://localhost:3000/signup">Signup</a></li>
+			<li class="divider-vertical"></li>
+			<li><a href="http://localhost:3000/signin">Signin</a></li>
+		</ul><!-- end ngIf: !isLoggedIn() -->
+		<!-- ngIf: isLoggedIn() -->
+		
+	</div>
+</div>
+</div>
+    <section class="content">
+      <section class="container">
+        <!-- ngView:  --><section data-ng-view="" class="ng-scope"><section class="col-sm-9 ng-scope" data-ng-controller="ArticlesController">
+	<article class="box-shadow">
+		
+		<!-- ngIf: checkAccess('admin') -->
+
+		<h1 class="text-left ng-binding" ng-bind="article.title">Google code Prettify Solarized theme</h1>
+
+		<div class="clearfix article-date ng-binding" ng-bind="(article.created | date:'longDate')">January 10, 2014</div>
+		<div class="lead ng-binding" ng-bind="article.lead">Very short CSS to solarize your Prettify code</div>
+		<div compile="article.content"><p class="ng-scope">Some text and some more text or even more text.</p>
+
+<p class="ng-scope">CSS :</p>
+
+<pre class="prettyprint linenums lang-css  ng-scope" data-pbcklang="css"><ol class="linenums"><li class="L0"><span class="com">/* Solarized for Google Code Prettify */</span></li><li class="L1"><span class="pun">.</span><span class="pln">prettyprint </span><span class="pun">{</span></li><li class="L2"><span class="pln">  </span><span class="kwd">color</span><span class="pun">:</span><span class="pln"> </span><span class="lit">#839496</span><span class="pun">;</span></li><li class="L3"><span class="pln">  </span><span class="kwd">background-color</span><span class="pun">:</span><span class="pln"> </span><span class="lit">#002b36</span><span class="pun">;</span></li><li class="L4"><span class="pun">}</span></li><li class="L5"><span class="pln">&nbsp;</span></li><li class="L6"><span class="pun">.</span><span class="pln">prettyprint </span><span class="pun">.</span><span class="pln">pln </span><span class="pun">{</span></li><li class="L7"><span class="pln">  </span><span class="kwd">color</span><span class="pun">:</span><span class="pln"> </span><span class="kwd">inherit</span><span class="pun">;</span></li><li class="L8"><span class="pun">}</span></li><li class="L9"><span class="pln">&nbsp;</span></li><li class="L0"><span class="pun">.</span><span class="pln">prettyprint </span><span class="pun">.</span><span class="pln">str</span><span class="pun">,</span></li><li class="L1"><span class="pun">.</span><span class="pln">prettyprint </span><span class="pun">.</span><span class="pln">lit</span><span class="pun">,</span></li><li class="L2"><span class="pun">.</span><span class="pln">prettyprint </span><span class="pun">.</span><span class="pln">atv </span><span class="pun">{</span></li><li class="L3"><span class="pln">  </span><span class="kwd">color</span><span class="pun">:</span><span class="pln"> </span><span class="lit">#2aa198</span><span class="pun">;</span></li><li class="L4"><span class="pun">}</span></li><li class="L5"><span class="pln">&nbsp;</span></li><li class="L6"><span class="pun">.</span><span class="pln">prettyprint </span><span class="pun">.</span><span class="pln">kwd </span><span class="pun">{</span></li><li class="L7"><span class="pln">  </span><span class="kwd">color</span><span class="pun">:</span><span class="pln"> </span><span class="lit">#268bd2</span><span class="pun">;</span></li><li class="L8"><span class="pun">}</span></li><li class="L9"><span class="pln">&nbsp;</span></li><li class="L0"><span class="pun">.</span><span class="pln">prettyprint </span><span class="pun">.</span><span class="pln">com</span><span class="pun">,</span></li><li class="L1"><span class="pun">.</span><span class="pln">prettyprint </span><span class="pun">.</span><span class="pln">dec </span><span class="pun">{</span></li><li class="L2"><span class="pln">  </span><span class="kwd">color</span><span class="pun">:</span><span class="pln"> </span><span class="lit">#586e75</span><span class="pun">;</span></li><li class="L3"><span class="pln">  </span><span class="kwd">font-style</span><span class="pun">:</span><span class="pln"> italic</span><span class="pun">;</span></li><li class="L4"><span class="pun">}</span></li><li class="L5"><span class="pln">&nbsp;</span></li><li class="L6"><span class="pun">.</span><span class="pln">prettyprint </span><span class="pun">.</span><span class="pln">typ </span><span class="pun">{</span></li><li class="L7"><span class="pln">  </span><span class="kwd">color</span><span class="pun">:</span><span class="pln"> </span><span class="lit">#b58900</span><span class="pun">;</span></li><li class="L8"><span class="pun">}</span></li><li class="L9"><span class="pln">&nbsp;</span></li><li class="L0"><span class="pun">.</span><span class="pln">prettyprint </span><span class="pun">.</span><span class="pln">pun </span><span class="pun">{</span></li><li class="L1"><span class="pln">  </span><span class="kwd">color</span><span class="pun">:</span><span class="pln"> </span><span class="kwd">inherit</span><span class="pun">;</span></li><li class="L2"><span class="pun">}</span></li><li class="L3"><span class="pln">&nbsp;</span></li><li class="L4"><span class="pun">.</span><span class="pln">prettyprint </span><span class="pun">.</span><span class="pln">opn </span><span class="pun">{</span></li><li class="L5"><span class="pln">  </span><span class="kwd">color</span><span class="pun">:</span><span class="pln"> </span><span class="kwd">inherit</span><span class="pun">;</span></li><li class="L6"><span class="pun">}</span></li><li class="L7"><span class="pln">&nbsp;</span></li><li class="L8"><span class="pun">.</span><span class="pln">prettyprint </span><span class="pun">.</span><span class="pln">clo </span><span class="pun">{</span></li><li class="L9"><span class="pln">  </span><span class="kwd">color</span><span class="pun">:</span><span class="pln"> </span><span class="kwd">inherit</span><span class="pun">;</span></li><li class="L0"><span class="pun">}</span></li><li class="L1"><span class="pln">&nbsp;</span></li><li class="L2"><span class="pun">.</span><span class="pln">prettyprint </span><span class="pun">.</span><span class="pln">tag </span><span class="pun">{</span></li><li class="L3"><span class="pln">  </span><span class="kwd">color</span><span class="pun">:</span><span class="pln"> </span><span class="lit">#268bd2</span><span class="pun">;</span></li><li class="L4"><span class="pln">  </span><span class="kwd">font-weight</span><span class="pun">:</span><span class="pln"> bold</span><span class="pun">;</span></li><li class="L5"><span class="pun">}</span></li><li class="L6"><span class="pln">&nbsp;</span></li><li class="L7"><span class="pun">.</span><span class="pln">prettyprint </span><span class="pun">.</span><span class="pln">atn </span><span class="pun">{</span></li><li class="L8"><span class="pln">  </span><span class="kwd">color</span><span class="pun">:</span><span class="pln"> </span><span class="kwd">inherit</span><span class="pun">;</span></li><li class="L9"><span class="pun">}</span></li><li class="L0"><span class="pln">&nbsp;</span></li><li class="L1"><span class="com">/* Alternate shading for lines */</span></li><li class="L2"><span class="pln">li</span><span class="pun">.</span><span class="pln">L1</span><span class="pun">,</span></li><li class="L3"><span class="pln">li</span><span class="pun">.</span><span class="pln">L3</span><span class="pun">,</span></li><li class="L4"><span class="pln">li</span><span class="pun">.</span><span class="pln">L5</span><span class="pun">,</span></li><li class="L5"><span class="pln">li</span><span class="pun">.</span><span class="pln">L7</span><span class="pun">,</span></li><li class="L6"><span class="pln">li</span><span class="pun">.</span><span class="pln">L9 </span><span class="pun">{</span><span class="pln"> </span><span class="kwd">background</span><span class="pun">:</span><span class="pln"> </span><span class="lit">#1A424D</span><span class="pun">;}</span></li><li class="L7"><span class="pln">&nbsp;</span></li><li class="L8"><span class="pln">pre</span><span class="pun">.</span><span class="pln">prettyprint</span><span class="pun">.</span><span class="pln">linenums </span><span class="pun">{</span></li><li class="L9"><span class="kwd">-webkit-box-shadow</span><span class="pun">:</span><span class="pln"> </span><span class="lit">37px</span><span class="pln"> </span><span class="lit">0</span><span class="pln"> </span><span class="lit">0</span><span class="pln"> </span><span class="lit">#002b36</span><span class="pln"> inset</span><span class="pun">,</span><span class="lit">38px</span><span class="pln"> </span><span class="lit">0</span><span class="pln"> </span><span class="lit">0</span><span class="pln"> </span><span class="lit">#839496</span><span class="pln"> inset</span><span class="pun">;</span></li><li class="L0"><span class="kwd">-moz-box-shadow</span><span class="pun">:</span><span class="pln"> </span><span class="lit">37px</span><span class="pln"> </span><span class="lit">0</span><span class="pln"> </span><span class="lit">0</span><span class="pln"> </span><span class="lit">#002b36</span><span class="pln"> inset</span><span class="pun">,</span><span class="lit">38px</span><span class="pln"> </span><span class="lit">0</span><span class="pln"> </span><span class="lit">0</span><span class="pln"> </span><span class="lit">#839496</span><span class="pln"> inset</span><span class="pun">;</span></li><li class="L1"><span class="kwd">box-shadow</span><span class="pun">:</span><span class="pln"> </span><span class="lit">37px</span><span class="pln"> </span><span class="lit">0</span><span class="pln"> </span><span class="lit">0</span><span class="pln"> </span><span class="lit">#002b36</span><span class="pln"> inset</span><span class="pun">,</span><span class="lit">38px</span><span class="pln"> </span><span class="lit">0</span><span class="pln"> </span><span class="lit">0</span><span class="pln"> </span><span class="lit">#839496</span><span class="pln"> inset</span><span class="pun">;</span></li><li class="L2"><span class="pun">}</span></li></ol></pre>
+
+<p class="ng-scope">Some more code:</p>
+
+<pre class="prettyprint linenums lang-javascript  ng-scope" data-pbcklang="javascript"><ol class="linenums"><li class="L0"><span class="com">/**</span></li><li class="L1"><span class="com"> * Article Schema</span></li><li class="L2"><span class="com"> */</span></li><li class="L3"><span class="kwd">var</span><span class="pln"> </span><span class="typ">ArticleSchema</span><span class="pln"> </span><span class="pun">=</span><span class="pln"> </span><span class="kwd">new</span><span class="pln"> </span><span class="typ">Schema</span><span class="pun">({</span></li><li class="L4"><span class="pln">  created</span><span class="pun">:</span><span class="pln"> </span><span class="pun">{</span></li><li class="L5"><span class="pln">    type</span><span class="pun">:</span><span class="pln"> </span><span class="typ">Date</span><span class="pun">,</span></li><li class="L6"><span class="pln">  </span><span class="kwd">default</span><span class="pun">:</span><span class="pln"> </span><span class="typ">Date</span><span class="pun">.</span><span class="pln">now</span></li><li class="L7"><span class="pln">  </span><span class="pun">},</span></li><li class="L8"><span class="pln">  title</span><span class="pun">:</span><span class="pln"> </span><span class="pun">{</span></li><li class="L9"><span class="pln">    type</span><span class="pun">:</span><span class="pln"> </span><span class="typ">String</span><span class="pun">,</span></li><li class="L0"><span class="pln">  </span><span class="kwd">default</span><span class="pun">:</span><span class="pln"> </span><span class="str">''</span><span class="pun">,</span></li><li class="L1"><span class="pln">    trim</span><span class="pun">:</span><span class="pln"> </span><span class="kwd">true</span></li><li class="L2"><span class="pln">  </span><span class="pun">},</span></li><li class="L3"><span class="pln">    lead</span><span class="pun">:</span><span class="pln"> </span><span class="pun">{</span></li><li class="L4"><span class="pln">    type</span><span class="pun">:</span><span class="pln"> </span><span class="typ">String</span><span class="pun">,</span></li><li class="L5"><span class="pln">  </span><span class="kwd">default</span><span class="pun">:</span><span class="pln"> </span><span class="str">''</span><span class="pun">,</span></li><li class="L6"><span class="pln">    trim</span><span class="pun">:</span><span class="pln"> </span><span class="kwd">true</span></li><li class="L7"><span class="pln">  </span><span class="pun">},</span></li><li class="L8"><span class="pln">  content</span><span class="pun">:</span><span class="pln"> </span><span class="pun">{</span></li><li class="L9"><span class="pln">    type</span><span class="pun">:</span><span class="pln"> </span><span class="typ">String</span><span class="pun">,</span></li><li class="L0"><span class="pln">  </span><span class="kwd">default</span><span class="pun">:</span><span class="pln"> </span><span class="str">''</span><span class="pun">,</span></li><li class="L1"><span class="pln">    trim</span><span class="pun">:</span><span class="pln"> </span><span class="kwd">true</span></li><li class="L2"><span class="pln">  </span><span class="pun">},</span></li><li class="L3"><span class="pln">  user</span><span class="pun">:</span><span class="pln"> </span><span class="pun">{</span></li><li class="L4"><span class="pln">    type</span><span class="pun">:</span><span class="pln"> </span><span class="typ">Schema</span><span class="pun">.</span><span class="typ">ObjectId</span><span class="pun">,</span></li><li class="L5"><span class="pln">    </span><span class="kwd">ref</span><span class="pun">:</span><span class="pln"> </span><span class="str">'User'</span></li><li class="L6"><span class="pln">  </span><span class="pun">},</span></li><li class="L7"><span class="pln">  tags</span><span class="pun">:</span><span class="pln"> </span><span class="pun">{</span></li><li class="L8"><span class="pln">    type</span><span class="pun">:</span><span class="pln"> </span><span class="typ">Array</span><span class="pun">,</span></li><li class="L9"><span class="pln">		index</span><span class="pun">:</span><span class="pln"> </span><span class="kwd">true</span></li><li class="L0"><span class="pln">  </span><span class="pun">}</span></li><li class="L1"><span class="pun">});</span></li></ol></pre>
+
+<p class="ng-scope">&nbsp;</p></div>
+		<!-- ngIf: article.tags.length -->
+	</article>
+
+
+	<div id="comments" ng-controller="CommentsController" class="ng-scope">
+		<div class="box-shadow">
+			<input type="text" class="fakeinput form-control" placeholder="Leave Your comment" ng-hide="showCommentForm" ng-focus="showCommentForm=true" />
+			<div class="comment-block ng-hide" ng-show="showCommentForm">
+				<button type="button" class="close" ng-click="showCommentForm = false">×</button>
+				<!-- ngIf: checkAccess('auth') -->
+				<!-- ngIf: !checkAccess('auth') --><!-- ngInclude: '/views/users/signin.html' --><div class="auth-block ng-scope" ng-if="!checkAccess('auth')" ng-include="'/views/users/signin.html'"><section data-ng-controller="UsersController" class="ng-scope">
+  <div class="row">
+    <div class="col-sm-10 col-sm-offset-1">
+			<a href="http://localhost:3000/auth/facebook">
+				<img src="/img/icons/facebook.png" />
+			</a>
+			<a href="http://localhost:3000/auth/github"><img src="/img/icons/github.png" /></a><a href="http://localhost:3000/auth/twitter"><img src="/img/icons/twitter.png" /></a><a href="http://localhost:3000/auth/google"><img src="/img/icons/google.png" /></a></div>
+    <div class="col-sm-12">
+			<div class="row ng-hide" ng-show="showMessage">
+        <div class="fade in alert alert-danger col-sm-4 col-sm-offset-2">
+          <button type="button" class="close" ng-click="showMessage = false">×</button><strong ng-bind="message" class="ng-binding"></strong>
+        </div>
+      </div>
+      <form action="/signin" method="post" class="signup form-horizontal ng-invalid ng-invalid-required ng-dirty" ng-submit="signIn()" onsubmit="return false;">
+        <div class="form-group">
+          <label for="email" class="control-label col-sm-2">Email</label>
+          <div class="col-sm-4">
+            <input type="text" id="email" name="email" placeholder="Email" class="form-control ng-invalid ng-invalid-required ng-dirty" ng-model="user.email" auto-fill-sync="" required="" value="" />
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="password" class="control-label col-sm-2">Password</label>
+          <div class="col-sm-4">
+            <input type="password" id="password" name="password" placeholder="Password" class="form-control ng-invalid ng-invalid-required ng-dirty" ng-model="user.password" auto-fill-sync="" required="" value="" />
+          </div>
+        </div>
+        <div class="form-group">
+          <div class="col-sm-10 col-sm-offset-2">
+            <button type="submit" class="btn btn-primary">Sign in</button>&nbsp;
+            or&nbsp;<a href="http://localhost:3000/signin" class="show-login">Sign up</a>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</section>
+
+</div><!-- end ngIf: !checkAccess('auth') -->
+			</div>
+		</div>
+
+		<!-- ngIf: comments.length -->
+		<ul class="list-unstyled">
+			<!-- ngRepeat: comm in comments -->
+		</ul>
+	</div> 
+</section>
+
+<!-- ngInclude: '/views/right_nav.html' --><div class="col-sm-3 hidden-xs ng-scope" ng-include="'/views/right_nav.html'"><div class="right-nav box-shadow ng-scope" ng-controller="rightNavCtrl">
+	<form class="search-form ng-pristine ng-valid" action="" method="post" ng-submit="searchSubmit()">
+		<input type="text" class="form-control search-input ng-pristine ng-valid" name="search" placeholder="Search" ng-model="search" value="" />
+		<button type="submit" class="search-button" value=""><span class="glyphicon glyphicon-search"></span></button>
+	</form>
+	<h3>Themes</h3>
+	<ul class="tags-nav list-unstyled">
+		<!-- ngRepeat: tag in tags --><li ng-repeat="tag in tags" class="ng-scope">
+			<a href="http://localhost:3000/#!/tags/asd" ng-bind="tag._id+'('+tag.value+')'" class="ng-binding">asd(1)</a>
+		</li><!-- end ngRepeat: tag in tags --><li ng-repeat="tag in tags" class="ng-scope">
+			<a href="http://localhost:3000/#!/tags/qwe" ng-bind="tag._id+'('+tag.value+')'" class="ng-binding">qwe(1)</a>
+		</li><!-- end ngRepeat: tag in tags -->
+	</ul>
+</div>
+</div>
+</section>
+        <script type="text/javascript">window.user = null;</script>
+      </section>
+    </section>
+    <!--AngularJS-->
+    <script type="text/javascript" src="/lib/angular/angular.js"></script>
+    <script type="text/javascript" src="/lib/angular-cookies/angular-cookies.js"></script>
+    <script type="text/javascript" src="/lib/angular-resource/angular-resource.js"></script>
+    <script type="text/javascript" src="/lib/angular-route/angular-route.js"></script>
+    <script type="text/javascript" src="/lib/angular-sanitize/angular-sanitize.js"></script>
+    <script type="text/javascript" src="/lib/angular-animate/angular-animate.js"></script>
+    <!--script(type='text/javascript', src='/lib/ng-ckeditor/libs/ckeditor/ckeditor.js')-->
+    <script type="text/javascript" src="/static_lib/ckeditor/ckeditor.js"></script>
+    <script type="text/javascript" src="/lib/google-code-prettify/src/prettify.js"></script>
+    <script type="text/javascript" src="/lib/google-code-prettify/src/lang-css.js"></script>
+    <!--script(type='text/javascript', src='/lib/google-code-prettify/src/prettify.css')-->
+    <!--script(type='text/javascript', src='/static_lib/ckeditor/plugins/pbckcode/plugin.js')-->
+    <script type="text/javascript" src="/lib/ng-ckeditor/ng-ckeditor.js"></script>
+    <!--Angular UI-->
+    <script type="text/javascript" src="/lib/angular-bootstrap/ui-bootstrap.js"></script>
+    <script type="text/javascript" src="/lib/angular-bootstrap/ui-bootstrap-tpls.js"></script>
+    <script type="text/javascript" src="/lib/angular-ui-utils/ui-utils.js"></script>
+    <!--Application Init-->
+    <script type="text/javascript" src="/js/rolesConfig.js"></script>
+    <script type="text/javascript" src="/js/app.js"></script>
+    <script type="text/javascript" src="/js/config.js"></script>
+    <script type="text/javascript" src="/js/directives.js"></script>
+    <script type="text/javascript" src="/js/filters.js"></script>
+    <!--Application Services-->
+    <script type="text/javascript" src="/js/services/system_srv.js"></script>
+    <script type="text/javascript" src="/js/services/global.js"></script>
+    <script type="text/javascript" src="/js/services/articles.js"></script>
+    <script type="text/javascript" src="/js/services/comments.js"></script>
+    <script type="text/javascript" src="/js/services/auth.js"></script>
+    <!--Application Controllers-->
+    <script type="text/javascript" src="/js/controllers/articles.js"></script>
+    <script type="text/javascript" src="/js/controllers/comments.js"></script>
+    <script type="text/javascript" src="/js/controllers/users.js"></script>
+    <script type="text/javascript" src="/js/controllers/index.js"></script>
+    <script type="text/javascript" src="/js/controllers/header.js"></script>
+    <script type="text/javascript" src="/js/controllers/right_nav.js"></script>
+    <script type="text/javascript" src="/js/init.js"></script>
+    <!--Livereload script rendered -->
+    <script type="text/javascript" src="http://localhost:35729/livereload.js"></script>
+  
+</body></html>

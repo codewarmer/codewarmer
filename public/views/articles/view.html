@@ -1,0 +1,80 @@
+<section class="col-sm-9" data-ng-controller="ArticlesController">
+	<article class="box-shadow">
+		
+		<div ng-if="checkAccess('admin')">
+			<a class="btn btn-default btn-lg" href="/#!/posts/{{article.slug}}/edit">
+				<span class="glyphicon glyphicon-edit"></span>
+			</a> 
+			<a class="btn btn-default btn-lg" data-ng-click="remove();">
+				<span class="glyphicon glyphicon-trash"></span>
+			</a>
+		</div>
+
+		<h1 class="text-left" ng-bind="article.title"></h1>
+
+		<div class="clearfix article-date" ng-bind="(article.created | date:'longDate')"></div>
+		<div class="lead" ng-bind="article.lead"></div>
+		<div compile="article.content"></div>
+		<ul class="tags list-inline" ng-if="article.tags.length">
+			<li ng-repeat="tag in article.tags">
+				<a ng-href="/#!/tags/{{tag}}" ng-bind="tag"></a>{{($last ? '' : ',')}}
+			</li>
+		</ul>
+	</article>
+
+	<div class="box-shadow" ng-controller="socialCtrl">
+		<div class="social-buttons" ng-include="'/partials/social_buttons.html'" onload="loadScripts()"></div>
+	</div>
+
+	<div id="comments" ng-controller="CommentsController">
+		<div class="box-shadow">
+			
+			<input type="text" class="fakeinput form-control" placeholder="Leave Your comment" ng-hide="showCommentForm" ng-focus="showCommentForm=true" />
+			<div class="comment-block" ng-show="showCommentForm">
+				<button type="button" class="close" ng-click="showCommentForm = false">×</button>
+				<form ng-if="checkAccess('auth')" ng-submit="save()">
+					<div class="form-group">
+						<textarea class="form-control" id="comment" ng-model="comment.text" cols="30" rows="10" placeholder="Comment" required></textarea>
+					</div>
+					<div class="form-group">
+						<input type="submit" class="btn primary-btn" value="Post Comment" />
+					</div> 
+				</form>
+				<div class="auth-block" ng-if="!checkAccess('auth')" ng-include="'/views/users/signin.html'"></div>
+			</div>
+		</div>
+
+		<h2 ng-if="comments.length">Comments</h2>
+		<ul class="list-unstyled">
+			<li ng-repeat="comm in comments">
+				<div class="connection pull-left" ng-if="comm.parent_id"></div>
+				<div class="connection tail pull-left" ng-if="comments[$index+1].parent_id && comm.parent_id"></div>
+				<div class="comment-container box-shadow" ng-class="{'reply-indent': comm.parent_id}">
+					<strong class="author" ng-bind="comm.author.username" ng-class="{'author-badge': comm.author._id===article.user._id}"></strong> - <span class="text-muted" ng-bind="comm.posted | timeago"></span>
+					
+					<div class="text">
+						<strong class="replyto" ng-if="comm.replyTo" ng-bind="'@'+comm.replyTo"></strong>
+						<div class="body" ng-bind-html="comm.text | noHTML | newlines"></div>
+					</div>
+					<a class="reply text-right" href="" ng-click="openReply($index)" ng-show="!comm.openReply">reply</a>
+
+					<div class="reply-form" ng-if="comm.openReply">
+						<button type="button" class="close" ng-click="closeReply($index)">×</button>
+						<form ng-if="checkAccess('auth')" ng-submit="save()">
+							<div class="form-group">
+								<textarea class="form-control" id="comment" ng-model="comment.text" cols="30" rows="10" placeholder="Enter Your reply here" required></textarea>
+							</div>
+							<div class="form-group">
+								<input type="submit" class="btn primary-btn" value="Post reply" />
+							</div> 
+						</form>
+						<div class="auth-block" ng-if="!checkAccess('auth')" ng-include="'/views/users/signin.html'"></div>
+					</div>
+
+				</div>
+			</li>
+		</ul>
+	</div> 
+</section>
+
+<div class="col-sm-3 hidden-xs" ng-include="'/views/right_nav.html'"></div>

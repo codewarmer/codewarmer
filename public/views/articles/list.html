@@ -1,0 +1,12 @@
+<section class="col-sm-9" data-ng-controller="ArticlesController">
+	<ul class="articles list-unstyled">
+		<li class="box-shadow" data-ng-repeat="article in articles" ng-class="{'unpublished': !article.published}">
+			<h2><a data-ng-href="/posts/{{article.slug}}" ng-bind="article.title"></a></h2>
+			<div class="article-date" ng-bind="article.created | date:'longDate'"></div>
+			<div class="lead" ng-bind="article.lead"></div>
+		</li>
+	</ul>
+	<h1 data-ng-hide="!articles || articles.length">No posts found by this request</h1>
+</section>
+
+<div class="col-sm-3 hidden-xs" ng-include="'/views/right_nav.html'"></div>
