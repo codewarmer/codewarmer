@@ -15,5 +15,8 @@
 		"angular-recaptcha": "latest",
 		"ng-ckeditor": "latest",
 		"google-code-prettify": "latest"
-  }
+  },
+	"resolutions": {
+		"angular": "1.2.11"
+	}
 }
