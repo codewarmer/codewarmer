@@ -6,7 +6,7 @@
   "author": "Victor B.",
   "repository": {
     "type": "git",
-    "url": "https://github.com/linnovate/mean.git"
+    "url": "https://github.com/yllcompany/codewarmer.git"
   },
   "engines": {
     "node": "0.10.x",
@@ -15,7 +15,7 @@
   "scripts": {
     "start": "node node_modules/grunt-cli/bin/grunt",
     "test": "node node_modules/grunt-cli/bin/grunt test",
-    "postinstall": "bower install"
+    "postinstall": "./node_modules/bower/bin/bower install"
   },
   "dependencies": {
     "express": "latest",
