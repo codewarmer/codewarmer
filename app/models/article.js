@@ -5,7 +5,7 @@
 var mongoose = require('mongoose'),
 config = require('../../config/config'),
 Schema = mongoose.Schema,
-textSearch = require('mongoose-text-search'),
+// textSearch = require('mongoose-text-search'),
 Tag = false;
 
 
@@ -54,24 +54,24 @@ var ArticleSchema = new Schema({
  * Plugins
  */
 
-ArticleSchema.plugin(textSearch);
+// ArticleSchema.plugin(textSearch);
 
 /**
  * Indexes
  */
 
-ArticleSchema.index({
-	title: 'text',
-	lead: 'text',
-	content: 'text'
-},{
-	name: 'best_match_index',
-	weights: {
-		title: 5,
-		lead: 4,
-		content: 3
-	},
-});
+// ArticleSchema.index({
+// 	title: 'text',
+// 	lead: 'text',
+// 	content: 'text'
+// },{
+// 	name: 'best_match_index',
+// 	weights: {
+// 		title: 5,
+// 		lead: 4,
+// 		content: 3
+// 	},
+// });
 
 /**
  * Validations
