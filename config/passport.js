@@ -3,8 +3,8 @@ var mongoose = require('mongoose'),
     TwitterStrategy = require('passport-twitter').Strategy,
     FacebookStrategy = require('passport-facebook').Strategy,
     GitHubStrategy = require('passport-github').Strategy,
-    //GoogleStrategy = require('passport-google-oauth').OAuth2Strategy,
-    GoogleStrategy = require('passport-google').Strategy,
+    GoogleStrategy = require('passport-google-oauth').OAuth2Strategy,
+    //GoogleStrategy = require('passport-google').Strategy,
     User = mongoose.model('User'),
     config = require('./config');
 
@@ -145,11 +145,11 @@ module.exports = function(passport) {
 
     //Use google strategy
     passport.use(new GoogleStrategy({
-			returnURL: config.google.callbackURL,
-			realm: config.baseURL
-            // clientID: config.google.clientID,
-            // clientSecret: config.google.clientSecret,
-            // callbackURL: config.google.callbackURL
+			// returnURL: config.google.callbackURL,
+			// realm: config.baseURL
+            clientID: config.google.clientID,
+            clientSecret: config.google.clientSecret,
+            callbackURL: config.google.callbackURL
 			
         },
         function(accessToken, refreshToken, profile, done) {

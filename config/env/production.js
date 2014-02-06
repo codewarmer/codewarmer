@@ -25,8 +25,8 @@ module.exports = {
     callbackURL: "http://www.codewarmer.com/auth/github/callback"
   },
   google: {
-    //clientID: process.env.GOOGLE_ID,
-    //clientSecret: process.env.GOOGLE_SECRET,
+    clientID: process.env.GOOGLE_ID,
+    clientSecret: process.env.GOOGLE_SECRET,
     callbackURL: "http://www.codewarmer.com/auth/google/callback"
   }
 }

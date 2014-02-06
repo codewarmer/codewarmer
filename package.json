@@ -29,7 +29,6 @@
     "passport-facebook": "latest",
     "passport-twitter": "latest",
     "passport-github": "latest",
-		"passport-google": "latest",
     "passport-google-oauth": "latest",
     "lodash": "latest",
     "async": "latest",
