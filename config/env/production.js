@@ -3,29 +3,30 @@ module.exports = {
   app: {
     name: "CodeWarmer"
   },
+	baseURL: "http://www.codewarmer.com/",
 	recaptcha: {
 		public_key: process.env.RECAPTCHA_PUBLIC,
 		private_key: process.env.RECAPTCHA_PRIVATE
 	},
 	//Social keys
   facebook: {
-    clientID: "APP_ID",
-    clientSecret: "APP_SECRET",
-    callbackURL: "http://codewarmer.com/auth/facebook/callback"
+    clientID: process.env.FACEBOOK_ID,
+    clientSecret: process.env.FACEBOOK_SECRET,
+    callbackURL: "http://www.codewarmer.com/auth/facebook/callback"
   },
   twitter: {
-    clientID: "CONSUMER_KEY",
-    clientSecret: "CONSUMER_SECRET",
-    callbackURL: "http://codewarmer.com/auth/twitter/callback"
+    clientID: process.env.TWITTER_ID,
+    clientSecret: process.env.TWITTER_SECRET,
+    callbackURL: "http://www.codewarmer.com/auth/twitter/callback"
   },
   github: {
-    clientID: "APP_ID",
-    clientSecret: "APP_SECRET",
-    callbackURL: "http://codewarmer.com/auth/github/callback"
+    clientID: process.env.GITHUB_ID,
+    clientSecret: process.env.GITHUB_SECRET,
+    callbackURL: "http://www.codewarmer.com/auth/github/callback"
   },
   google: {
-    clientID: "APP_ID",
-    clientSecret: "APP_SECRET",
-    callbackURL: "http://codewarmer.com/auth/google/callback"
+    //clientID: process.env.GOOGLE_ID,
+    //clientSecret: process.env.GOOGLE_SECRET,
+    callbackURL: "http://www.codewarmer.com/auth/google/callback"
   }
 }
