@@ -37,7 +37,7 @@
 						<textarea class="form-control" id="comment" ng-model="comment.text" cols="30" rows="10" placeholder="Comment" required></textarea>
 					</div>
 					<div class="form-group">
-						<input type="submit" class="btn primary-btn" value="Post Comment" />
+						<input type="submit" class="btn btn-success" value="Post Comment" />
 					</div> 
 				</form>
 				<div class="auth-block" ng-if="!checkAccess('auth')" ng-include="'/views/users/signin.html'"></div>
@@ -50,7 +50,7 @@
 				<div class="connection pull-left" ng-if="comm.parent_id"></div>
 				<div class="connection tail pull-left" ng-if="comments[$index+1].parent_id && comm.parent_id"></div>
 				<div class="comment-container box-shadow" ng-class="{'reply-indent': comm.parent_id}">
-					<strong class="author" ng-bind="comm.author.username" ng-class="{'author-badge': comm.author._id===article.user._id}"></strong> - <span class="text-muted" ng-bind="comm.posted | timeago"></span>
+					<strong class="author" ng-bind="comm.author.username" ng-class="{'label label-danger': comm.author._id===article.user._id}"></strong> - <span class="text-muted" ng-bind="comm.posted | timeago"></span>
 					
 					<div class="text">
 						<strong class="replyto" ng-if="comm.replyTo" ng-bind="'@'+comm.replyTo"></strong>
@@ -65,7 +65,7 @@
 								<textarea class="form-control" id="comment" ng-model="comment.text" cols="30" rows="10" placeholder="Enter Your reply here" required></textarea>
 							</div>
 							<div class="form-group">
-								<input type="submit" class="btn primary-btn" value="Post reply" />
+								<input type="submit" class="btn btn-success" value="Post reply" />
 							</div> 
 						</form>
 						<div class="auth-block" ng-if="!checkAccess('auth')" ng-include="'/views/users/signin.html'"></div>

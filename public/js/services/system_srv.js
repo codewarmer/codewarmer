@@ -2,19 +2,19 @@ angular.module('mean.system').factory('Page', function() {
   var title = '',	description = '', keywords = '';
 	return {
 		getTitle: function() {
-			return title || 'Bad Gateway';
+			return title + ' | CodeWarmer' || 'CodeWarmer - blog about software development and egeneering';
 		},
 		setTitle: function(newTitle) {
 			title = newTitle;
 		},
 		getDescription: function() {
-			return description || 'Blog about programming from practical perspective with lots of real life examples.';
+			return description || 'This blog mainly about web programming and related topics with many examples';
 		},
 		setDescription: function(newDescription) {
 			description = newDescription;
 		},
 		getKeywords: function() {
-			return keywords || 'node.js, express, mongoose, mongodb, angularjs';
+			return keywords || 'node.js, express, mongoose, mongodb, angular.js, javascript';
 		},
 		setKeywords: function(newKeywords) {
 			keywords = newKeywords;

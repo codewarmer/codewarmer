@@ -1,11 +1,9 @@
 var passport = require('passport'), 
     mongoose = require('mongoose'), 
     User = mongoose.model('User'), 
-    rolesConfig = require('../../public/js/rolesConfig'), 
+    config = require('../../config/config'),
+    rolesConfig = require('../../public/js/rolesConfig'),
     Recaptcha = require('recaptcha').Recaptcha;
-
-var PUBLIC_KEY = '6LcIsu0SAAAAAInHdlg3iuysUOOESy9ioWqDM9iD',
-    PRIVATE_KEY = '6LcIsu0SAAAAANBQGO_7UVzIcopKF_lsWeDdbgnG';
 
 module.exports = {
 	create: function(req, res, next) {
@@ -15,7 +13,7 @@ module.exports = {
 			response: req.body.recaptcha.response
 		};
 
-		var recaptcha = new Recaptcha(PUBLIC_KEY, PRIVATE_KEY, data);
+		var recaptcha = new Recaptcha(config.recaptcha.public_key, config.recaptcha.private_key, data);
 		
 		recaptcha.verify(function(success, error_code) {
 			var errors = [];
@@ -37,7 +35,7 @@ module.exports = {
 					}
 					
 					for(var i in err.errors){
-						if(Object.hasOwnProperty(i))
+						if(err.errors.hasOwnProperty(i))
 							errors.push(err.errors[i]);
 					}
 					

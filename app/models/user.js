@@ -69,6 +69,11 @@ UserSchema.path('email').validate(function(email) {
     return email.length;
 }, 'Email cannot be blank');
 
+UserSchema.path('email').validate(function(email) {
+	var re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+  return re.test(email);
+}, '`{VALUE}` is not valid email');
+
 UserSchema.path('username').validate(function(username) {
     // if you are authenticating by any of the oauth strategies, don't validate
     if (authTypes.indexOf(this.provider) !== -1) return true;
