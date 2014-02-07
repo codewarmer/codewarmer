@@ -8,13 +8,13 @@ angular.module('mean.system').factory('Page', function() {
 			title = newTitle + '| CodeWarmer';
 		},
 		getDescription: function() {
-			return description || 'This blog mainly about web programming and related topics with many examples';
+			return description || 'This blog is mainly about the web programming and related topics with many examples';
 		},
 		setDescription: function(newDescription) {
 			description = newDescription;
 		},
 		getKeywords: function() {
-			return keywords || 'node.js, express, mongoose, mongodb, angular.js, javascript';
+			return keywords || 'node.js, express, mongoose, mongodb, angular, javascript';
 		},
 		setKeywords: function(newKeywords) {
 			keywords = newKeywords;
