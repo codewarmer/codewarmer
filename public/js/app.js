@@ -1,4 +1,21 @@
-angular.module('mean', ['ngCookies', 'ngResource', 'ngRoute', 'ngAnimate', 'ui.bootstrap', 'ui.route', 'mean.system', 'mean.articles', 'mean.users', 'mean.auth', 'mean.comments', 'mean.admin', 'AutoFillSync', 'Prettify', 'TimeAgo']);
+angular.module('mean', ['ngCookies', 
+												'ngResource', 
+												'ngRoute', 
+												'ngAnimate', 
+												'ui.bootstrap', 
+												'ui.route', 
+												'angulartics', 
+												'angulartics.google.analytics', 
+												'mean.system', 
+												'mean.articles',
+												'mean.users', 
+												'mean.auth', 
+												'mean.comments', 
+												'mean.admin', 
+												'AutoFillSync', //provides sync for stored password and autofill
+												'Prettify', 
+												'TimeAgo' // Contains timeago filter
+											 ]);
 
 angular.module('mean.system', []);
 angular.module('mean.articles', ['ngCkeditor', 'ngSanitize', 'Compile']);

@@ -7,16 +7,17 @@
     "angular-cookies": "latest",
     "angular-mocks": "latest",
     "angular-route": "latest",
-		"angular-sanitize": "latest",
-		"angular-animate": "latest",
+    "angular-sanitize": "latest",
+    "angular-animate": "latest",
     "bootstrap": "latest",
     "angular-bootstrap": "latest",
     "angular-ui-utils": "latest",
-		"angular-recaptcha": "latest",
-		"ng-ckeditor": "latest",
-		"google-code-prettify": "latest"
+    "angular-recaptcha": "latest",
+    "ng-ckeditor": "latest",
+    "google-code-prettify": "latest",
+    "angulartics": "~0.8.7"
   },
-	"resolutions": {
-		"angular": "1.2.11"
-	}
+  "resolutions": {
+    "angular": "1.2.11"
+  }
 }

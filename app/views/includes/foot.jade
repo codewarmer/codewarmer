@@ -12,6 +12,9 @@ script(type='text/javascript', src='/lib/google-code-prettify/src/lang-css.js')
 //script(type='text/javascript', src='/lib/google-code-prettify/src/prettify.css')
 //script(type='text/javascript', src='/static_lib/ckeditor/plugins/pbckcode/plugin.js')
 script(type='text/javascript', src='/lib/ng-ckeditor/ng-ckeditor.js')
+script(type='text/javascript', src='/lib/angulartics/dist/angulartics.min.js')
+script(type='text/javascript', src='/lib/angulartics/dist/angulartics-google-analytics.min.js')
+
 
 //Recaptcha
 script(type='text/javascript', src="//www.google.com/recaptcha/api/js/recaptcha_ajax.js")
@@ -47,8 +50,9 @@ script(type='text/javascript', src='/js/controllers/right_nav.js')
 script(type='text/javascript', src='/js/controllers/admin.js')
 script(type='text/javascript', src='/js/init.js')
 
-//Social
-script(type='text/javascript', src='/js/social_scripts.js', defer)
+//Third party scripts
+script(type='text/javascript', src='/js/social_scripts.js')
+script(type='text/javascript', src='/js/analytics.js')
 
 if (process.env.NODE_ENV == 'development')
     //Livereload script rendered 
