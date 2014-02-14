@@ -1,4 +1,5 @@
-angular.module('mean.articles').controller('ArticlesController', function ($scope, $routeParams, $location, $compile, Global, Articles, Auth, Page) {
+angular.module('mean.articles').controller('ArticlesController', function ($scope, $routeParams, $location, $rootScope, $element, // $compile, Loader,
+																																					 Global, Articles, Auth, Page) {
   $scope.global = Global;
 	$scope.user = Auth.getCurrentUser();
 	$scope.checkAccess = Auth.checkAccess;
@@ -13,8 +14,15 @@ angular.module('mean.articles').controller('ArticlesController', function ($scop
 	}
 	else if(path === "/articles/create")
 		$scope.operation = "Create Article";
-
-
+	//console.log($element);
+	//window.as = $scope;
+	//window.ma = angulat.module('mean.articles');
+	// Loader.includeController('ckeditor', function() {
+	// 	$scope.$apply(function() {
+	// 		//$scope.showEditor = true;			
+	// 		$compile($element)($scope);
+	// 	});
+	// });
 	$scope.ckeditorConfig = {
 		lang: 'en',
 		toolbar_full: [{ name: 'basicstyles',

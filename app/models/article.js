@@ -54,24 +54,11 @@ var ArticleSchema = new Schema({
  * Plugins
  */
 
-// ArticleSchema.plugin(textSearch);
 
 /**
  * Indexes
  */
 
-// ArticleSchema.index({
-// 	title: 'text',
-// 	lead: 'text',
-// 	content: 'text'
-// },{
-// 	name: 'best_match_index',
-// 	weights: {
-// 		title: 5,
-// 		lead: 4,
-// 		content: 3
-// 	},
-// });
 
 /**
  * Validations

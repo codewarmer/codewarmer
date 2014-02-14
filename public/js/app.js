@@ -1,4 +1,4 @@
-angular.module('mean', ['ngCookies', 
+var mean = angular.module('mean', ['ngCookies', 
 												'ngResource', 
 												'ngRoute', 
 												'ngAnimate', 
@@ -18,7 +18,7 @@ angular.module('mean', ['ngCookies',
 											 ]);
 
 angular.module('mean.system', []);
-angular.module('mean.articles', ['ngCkeditor', 'ngSanitize', 'Compile']);
+var ma = angular.module('mean.articles', ['ngSanitize', 'Compile']);
 angular.module('mean.users', ['vcRecaptcha']);
 angular.module('mean.auth', []);
 angular.module('mean.comments', ['NewLines', 'ngAnimate']);

@@ -24,3 +24,21 @@ angular.module('mean.system').factory('Page', function() {
 		}
 	};
 });
+
+angular.module('mean.system').factory('Loader', function($window, $rootScope) {
+	//use $script.js library that loaded to window.$script
+	//$window.meanFiles - contains project files
+	//$window.meanProviders - angular providers for current app
+  return {
+		load: function(ctrl, callback) {
+			$script($window.meanFiles[ctrl], function() {
+				//ma.requires.push('ngCkeditor');
+				//console.log('test');
+				var directive = $window.angular.module('ngCkeditor')._invokeQueue[0][2];
+				$window.meanProviders.$compileProvider.directive(directive[0],directive[1]);
+				callback();
+				//$rootScope.$apply();
+			});
+		}
+	};
+});

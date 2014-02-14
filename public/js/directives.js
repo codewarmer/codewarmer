@@ -11,8 +11,8 @@
 //Dirty fix for autofill fields
 angular.module('AutoFillSync',[]).directive('autoFillSync', ['$interval', function($interval) {
   return {
-		require: 'ngModel',
-		link: function(scope, elem, attrs, ngModel) {
+		'require': 'ngModel',
+		'link': function(scope, elem, attrs, ngModel) {
 			var origVal = elem.val();
 			var stop = $interval(function() {
 				var newVal = elem.val();
@@ -31,8 +31,8 @@ angular.module('AutoFillSync',[]).directive('autoFillSync', ['$interval', functi
 
 angular.module('Prettify',[]).directive('prettyprint', function() {
   return {
-    restrict: 'C',
-    link: function postLink(scope, element, attrs) {
+    'restrict': 'C',
+    'link': function postLink(scope, element, attrs) {
 			var langExtension = attrs['class'].match(/\blang(?:uage)?-([\w.]+)(?!\S)/);
 			if(langExtension) langExtension = langExtension[1];
       element.html(prettyPrintOne(element.html(), langExtension, true));
@@ -42,8 +42,8 @@ angular.module('Prettify',[]).directive('prettyprint', function() {
 
 angular.module('Compile',[]).directive('compile', function($compile) {
   return {
-		restrict: 'A',
-		link: function(scope, elem, attrs) {
+		'restrict': 'A',
+		'link': function(scope, elem, attrs) {
 			scope.$watch(
 				function(scope) {
 					return scope.$eval(attrs.compile);
