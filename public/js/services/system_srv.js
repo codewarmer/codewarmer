@@ -41,15 +41,10 @@ angular.module('mean.system').factory('Loader', function($window, $rootScope, $i
 			loading[lib] = loading[lib] || {status: 0};
 
 			if(config && config.sync){
-				var files = $window.meanFiles[lib];
-				syncLoader(files);
 
 				function syncLoader(files){
-					//console.log(files);
 					var file = files.shift();
-					//console.log(files.length);
 					if(files.length == 0){
-						//console.log('adds callback');
 						callbacks[lib] = [];
 						callbacks[lib].push(libModuleLoader(lib));
 						callbacks[lib].push(callback);
@@ -59,9 +54,10 @@ angular.module('mean.system').factory('Loader', function($window, $rootScope, $i
 							return syncLoader(files);
 						});
 					}
-					//console.log('runLoad');
 					loadLib(file);
 				}
+				var files = $window.meanFiles[lib];
+				syncLoader(files);
 				return;
 			}
 
