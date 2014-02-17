@@ -113,6 +113,16 @@ module.exports = function(grunt) {
 					compilation_level: 'SIMPLE_OPTIMIZATIONS',
 					language_in: 'ECMASCRIPT5'
 				}
+			},
+			ckeditor: {
+				closurePath: '/usr/local/opt/closure-compiler/libexec/',
+				js: toMinify.relativePaths('ckeditor')[0],
+				jsOutputFile: './public/static_lib/ckeditor/ckeditor.min.js',
+				maxBuffer: 500,
+				options: {
+					compilation_level: 'SIMPLE_OPTIMIZATIONS',
+					language_in: 'ECMASCRIPT5'
+				}
 			}
 		},
     mochaTest: {
