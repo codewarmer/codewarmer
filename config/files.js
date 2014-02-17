@@ -70,7 +70,7 @@ module.exports = {
 			'/lib/bootstrap/dist/css/bootstrap.min.css',
 			'/css/all.min.css'
 		],
-		ckeditor: ['/static_lib/ckeditor/ckeditor.min.js', '/lib/ng-ckeditor/ng-ckeditor.js'],
+		ckeditor: ['/static_lib/ckeditor/ckeditor.js', '/lib/ng-ckeditor/ng-ckeditor.js'],
 		prettify: ['/js/prettify.min.js'],
 		recaptcha: ['//www.google.com/recaptcha/api/js/recaptcha_ajax.js', '/lib/angular-recaptcha/release/angular-recaptcha.min.js']
 	},
