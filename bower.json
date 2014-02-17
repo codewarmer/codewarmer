@@ -2,7 +2,7 @@
   "name": "mean",
   "version": "0.1.0",
   "dependencies": {
-    "angular": "1.2.12",
+    "angular": "1.2.13",
     "angular-resource": "latest",
     "angular-cookies": "latest",
     "angular-mocks": "latest",
@@ -18,6 +18,6 @@
     "angulartics": "~0.8.7"
   },
   "resolutions": {
-    "angular": "1.2.12"
+    "angular": "1.2.13"
   }
 }
