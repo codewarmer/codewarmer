@@ -19,7 +19,7 @@ var mean = angular.module('mean', ['ngCookies',
 
 angular.module('mean.system', []);
 var ma = angular.module('mean.articles', ['ngSanitize', 'Compile']);
-angular.module('mean.users', ['vcRecaptcha']);
+angular.module('mean.users', []);
 angular.module('mean.auth', []);
 angular.module('mean.comments', ['NewLines', 'ngAnimate']);
 angular.module('mean.admin', []);

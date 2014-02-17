@@ -29,13 +29,21 @@ angular.module('AutoFillSync',[]).directive('autoFillSync', ['$interval', functi
 	};
 }]);
 
-angular.module('Prettify',[]).directive('prettyprint', function() {
+angular.module('Prettify',[]).directive('prettyprint', function(Loader) {
+//	var t = 0;
+	console.log('test');
   return {
     'restrict': 'C',
     'link': function postLink(scope, element, attrs) {
 			var langExtension = attrs['class'].match(/\blang(?:uage)?-([\w.]+)(?!\S)/);
 			if(langExtension) langExtension = langExtension[1];
-      element.html(prettyPrintOne(element.html(), langExtension, true));
+			//load Google prettify library
+			//console.log('test'+t);
+			//t++;
+			Loader.load('prettify', {ensure: 'prettyPrintOne'}, function() {
+				console.log('pretty');
+				element.html(prettyPrintOne(element.html(), langExtension, true));
+			});
     }
   };
 });

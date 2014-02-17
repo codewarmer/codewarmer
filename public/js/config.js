@@ -8,12 +8,15 @@ angular.module('mean').config(function($routeProvider, $locationProvider, $httpP
       templateUrl: '/views/articles/edit.html',
 			access: 'admin',
 			resolve: {
-				'load': ['$q','$rootScope', 'Loader', loadCkeditor]
+				'load': ['$q','$rootScope', 'Loader', loadDependency('ckeditor')]
 			}
     }).
     when('/posts/:slug/edit', {
       templateUrl: '/views/articles/edit.html',
-			access: 'admin'
+			access: 'admin',
+			resolve: {
+				'load': ['$q','$rootScope', 'Loader', loadDependency('ckeditor')]
+			}
     }).
     when('/posts/:slug', {
       templateUrl: '/views/articles/view.html',
@@ -25,7 +28,10 @@ angular.module('mean').config(function($routeProvider, $locationProvider, $httpP
       templateUrl: '/views/users/signin.html'
     }).
 		when('/signup', {
-      templateUrl: '/views/users/signup.html'
+      templateUrl: '/views/users/signup.html',
+			resolve: {
+				'load': ['$q','$rootScope', 'Loader', loadDependency('recaptcha', {sync: true, ensure: 'Recaptcha'})]
+			}
     }).
     when('/', {
       templateUrl: '/views/articles/list.html'
@@ -51,15 +57,21 @@ angular.module('mean').config(function($routeProvider, $locationProvider, $httpP
 		};
 	}]);
 
-
-	function loadCkeditor($q,$rootScope, Loader){
-		var deferred = $q.defer();
-		Loader.load('ckeditor', function() {
-			$rootScope.$apply(function() {
-				deferred.resolve();
+	function loadDependency(name, config){
+		return function($q,$rootScope, Loader) {
+			var deferred = $q.defer();
+			Loader.load(name, config, function() {
+				safeApply($rootScope,function() {
+					deferred.resolve();
+				});
 			});
-		});
-		return deferred.promise;
+			return deferred.promise;
+		}
+
+	}
+
+	function safeApply(scope, fn){
+		(scope.$$phase || scope.$root.$$phase) ? fn() : scope.$apply(fn);
 	}
 }).run(function($rootScope, $location, $http, Auth) {
 	//Check access parameter for path

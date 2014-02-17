@@ -94,10 +94,20 @@ module.exports = function(grunt) {
 			},
 		},
 		'closure-compiler': {
-			production: {
+			main: {
 				closurePath: '/usr/local/opt/closure-compiler/libexec/',
 				js: '<%= ngmin.js.dest %>',
 				jsOutputFile: './public/js/all.min.js',
+				maxBuffer: 500,
+				options: {
+					compilation_level: 'SIMPLE_OPTIMIZATIONS',
+					language_in: 'ECMASCRIPT5'
+				}
+			},
+			prettify: {
+				closurePath: '/usr/local/opt/closure-compiler/libexec/',
+				js: toMinify.relativePaths('prettifyToMinify'),
+				jsOutputFile: './public/js/prettify.min.js',
 				maxBuffer: 500,
 				options: {
 					compilation_level: 'SIMPLE_OPTIMIZATIONS',
