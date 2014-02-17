@@ -21,7 +21,7 @@ var browserOpts = {
 	//debug: true
 };
 
-var baseUrl = 'http://localhost:3000/';
+var baseUrl = process.env.NODE_ENV == 'development' ? 'http://localhost:3000/' : 'http://www.codewarmer.com/';
 
 function saveSnapshot(uri, body) {
 	var path = url.parse(uri).pathname;
