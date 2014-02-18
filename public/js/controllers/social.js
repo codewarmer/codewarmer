@@ -11,7 +11,7 @@ angular.module('mean.articles').controller('socialCtrl', function($scope, $windo
   $scope.loadScripts = function() {
 		//every 1000ms checks if social scripts available, renders buttons and destroys interval
 		var stop = $interval(function() {
-			if(gapi && FB && twttr && $scope.article.title){
+			if(gapi && FB && twttr && $scope.article.title && $scope.hashtags){
 				//Google plus one
 				gapi.plusone.render('gplus', {'size': 'medium'});
 				//Facebook like
