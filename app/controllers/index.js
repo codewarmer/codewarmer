@@ -12,6 +12,7 @@ exports.render = function(req, res) {
 		'production': production,
 		'jsFiles': production ? JSON.stringify(files.getPaths('js')) : files.getPaths('js'),
 		'cssFiles': files.getPaths('css'),
-		'allFiles': JSON.stringify(files.getPaths())
+		'allFiles': JSON.stringify(files.getPaths()),
+		'fbkey': process.env.FACEBOOK_ID || 'none'
   });
 };

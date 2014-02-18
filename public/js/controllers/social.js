@@ -1,5 +1,6 @@
 angular.module('mean.articles').controller('socialCtrl', function($scope, $window, $interval) {
-
+	
+	$scope.zombie = $window.navigator.userAgent == 'Zombie';
 	//Renders social buttons
   $scope.loadScripts = function() {
 		//every 1000ms checks if social scripts available, renders buttons and destroys interval
@@ -8,7 +9,12 @@ angular.module('mean.articles').controller('socialCtrl', function($scope, $windo
 				//Google plus one
 				gapi.plusone.render('gplus', {'size': 'medium'});
 				//Facebook like
-				FB.XFBML.parse();
+				FB.init({
+          appId      : $window.fbkey,
+          status     : true,
+          xfbml      : true
+        });
+				//FB.XFBML.parse();
 				//Twitter
 				twttr.widgets.load()
 				//Cancel of interval

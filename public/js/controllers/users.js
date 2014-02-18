@@ -1,4 +1,4 @@
-angular.module('mean.users').controller('UsersController', function($scope, $routeParams, $location, $http, Global, Auth, vcRecaptchaService) {
+angular.module('mean.users').controller('UsersController', function($scope, $routeParams, $location, $rootScope, $http, Global, Auth, Loader) {
   $scope.global = Global;
 	
 	$scope.user = {};
@@ -18,7 +18,7 @@ angular.module('mean.users').controller('UsersController', function($scope, $rou
 
 	$scope.signUp = function() {
 		//console.log($scope.user);
-		$scope.user.recaptcha = vcRecaptchaService.data();
+		$scope.user.recaptcha = $scope.vcRecaptchaService.data();
 		Auth.create($scope.user, function() {
 			$location.path('/');
 		},
@@ -28,8 +28,12 @@ angular.module('mean.users').controller('UsersController', function($scope, $rou
 				$scope.errors = data.errors;
 				$scope.showErrors = true;
 				//Reload recaptcha
-				vcRecaptchaService.reload();
+				$scope.vcRecaptchaService.reload();
 			}
 		});
 	};
+});
+
+angular.module('mean.users').controller('RecaptchaCtrl', function($scope, vcRecaptchaService) {
+	$scope.$parent.vcRecaptchaService = vcRecaptchaService;
 });

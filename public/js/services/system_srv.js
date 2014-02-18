@@ -39,6 +39,10 @@ angular.module('mean.system').factory('Loader', function($window, $rootScope, $i
 		load: function(lib, config, callback) {
 			callbacks[lib] = callbacks[lib] || [];
 			loading[lib] = loading[lib] || {status: 0};
+			
+			callback = typeof config == 'function' ? config : callback;
+			if(loading[lib].status == 1)
+			 	return callback();
 
 			if(config && config.sync){
 
@@ -61,11 +65,9 @@ angular.module('mean.system').factory('Loader', function($window, $rootScope, $i
 				return;
 			}
 
-			callback = typeof config == 'function' ? config : callback;
+			
 			//Check if library already in process or processed
-			if(loading[lib].status == 1)
-			 	return callback();
-			else if(callbacks[lib].length > 0){
+			if(callbacks[lib].length > 0){
 				callbacks[lib].push(callback);
 			}
 			else{
