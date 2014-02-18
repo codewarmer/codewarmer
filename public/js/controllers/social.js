@@ -1,11 +1,17 @@
-angular.module('mean.articles').controller('socialCtrl', function($scope, $window, $interval) {
+angular.module('mean.articles').controller('socialCtrl', function($scope, $window, $interval, $location) {
 	
 	$scope.zombie = $window.navigator.userAgent == 'Zombie';
+	$scope.$watch('article.tags', function() {
+		if($scope.article.tags)
+			$scope.hashtags = $scope.article.tags.join(',');
+	});
+	$scope.url = $location.absUrl();
+	console.log($location.absUrl());
 	//Renders social buttons
   $scope.loadScripts = function() {
 		//every 1000ms checks if social scripts available, renders buttons and destroys interval
 		var stop = $interval(function() {
-			if(gapi && FB && twttr){
+			if(gapi && FB && twttr && $scope.article.title){
 				//Google plus one
 				gapi.plusone.render('gplus', {'size': 'medium'});
 				//Facebook like

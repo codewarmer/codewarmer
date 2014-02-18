@@ -5,7 +5,7 @@ angular.module('mean.system').factory('Page', function() {
 			return title || 'CodeWarmer - blog about software development and egeneering';
 		},
 		setTitle: function(newTitle) {
-			title = newTitle + '| CodeWarmer';
+			title = newTitle + ' | CodeWarmer';
 		},
 		getDescription: function() {
 			return description || 'This blog is mainly about the web programming and related topics with many examples';
