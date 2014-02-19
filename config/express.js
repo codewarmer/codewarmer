@@ -6,7 +6,8 @@ var express = require('express'),
     flash = require('connect-flash'),
     helpers = require('view-helpers'),
     config = require('./config'),
-    path = require('path');
+    path = require('path'),
+    url = require('url');
 
 module.exports = function(app, passport, db) {
     app.set('showStackError', true);    
@@ -94,6 +95,17 @@ module.exports = function(app, passport, db) {
 					console.log(err);
 					res.send(404);
 				}
+			});
+			
+			app.use(function(req,res,next) {
+				//console.log(req.header('Referer'));
+				var referer = req.header('Referer');
+				if(/\/auth\//.test(req.url) && !/\/(signup|signin)/.test(referer)){
+					req.session.redirect = url.parse(referer).path;
+					req.session.save();
+				}
+				//console.log('hehe');
+				next();
 			});
 
         //routes should be at the last

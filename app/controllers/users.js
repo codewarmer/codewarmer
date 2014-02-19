@@ -8,7 +8,13 @@ var mongoose = require('mongoose'),
  * Auth callback
  */
 exports.authCallback = function(req, res, next) {
-    res.redirect('/');
+	if(req.session.redirect){
+		res.redirect(req.session.redirect);
+		delete req.session.redirect;
+		req.session.save();
+	}
+  else
+		res.redirect('/');
 };
 
 /**

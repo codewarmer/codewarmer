@@ -17,7 +17,7 @@ angular.module('mean.articles').controller('socialCtrl', function($scope, $windo
 				//Facebook like
 				FB.init({
           appId      : $window.fbkey,
-          status     : true,
+          status     : false,
           xfbml      : true
         });
 				// FB.ui(
