@@ -20,6 +20,15 @@ angular.module('mean.articles').controller('socialCtrl', function($scope, $windo
           status     : true,
           xfbml      : true
         });
+				// FB.ui(
+				// 	{
+				// 		method: 'feed',
+				// 		name: $scope.article.title,
+				// 		link: $scope.url,
+				// 		description: $scope.article.lead,
+				// 		message: ''
+				// 	}
+				// );
 				//FB.XFBML.parse();
 				//Twitter
 				twttr.widgets.load()

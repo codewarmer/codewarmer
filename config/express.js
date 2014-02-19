@@ -69,9 +69,9 @@ module.exports = function(app, passport, db) {
 			//SEO for Angular.js
 			app.use(function(req,res,next) {
 				var fragment = req.query._escaped_fragment_;
-				
+
 				//Not a search bot
-				if(!fragment) {
+				if(typeof fragment == 'undefined') {
 					next();
 					return;
 				}
