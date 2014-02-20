@@ -79,15 +79,43 @@ ArticleSchema.path('title').validate(function(title) {
 
 ArticleSchema.pre('save',function(next) {
 	//Save tags
-	Tag = Tag || mongoose.model('Tag');
-	this.tags.forEach(function(element, index, Array) {
-		var newTag = new Tag({'_id': element});
-		newTag.save();
-	});
+	// Tag = Tag || mongoose.model('Tag');
+	// this.tags.forEach(function(element, index, Array) {
+	// 	var newTag = new Tag({'_id': element});
+	// 	newTag.save();
+	// });
 
 	//Create slug
 	this.slug = Math.floor(((new Date()).getTime()/1000)) + '-' + this.title.toLowerCase().replace(/[^\w\s]+/g,'').replace(/\s+/g, '-');
   next();
+});
+
+/**
+ * Post-save hook
+ */
+
+ArticleSchema.post('save', function(doc) {
+  //Tag = Tag || mongoose.model('Tag');
+	Article = mongoose.model('Article');
+	opts = {
+		map: function() {
+			if(!this.tags)
+				return;
+			
+			for(i in this.tags)
+				emit(this.tags[i],1);
+		},
+		reduce: function(prev,curr) {
+			var count = 0;
+			for(i in curr)
+				count += curr[i];
+
+			return count;
+		},
+		out: {replace: 'tags'}
+	};
+	
+	Article.mapReduce(opts);
 });
 
 /**
