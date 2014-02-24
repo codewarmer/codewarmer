@@ -6,7 +6,7 @@ angular.module('mean.articles').controller('socialCtrl', function($scope, $windo
 			$scope.hashtags = $scope.article.tags.join(',');
 	});
 	$scope.url = $location.absUrl();
-	console.log($location.absUrl());
+
 	//Renders social buttons
   $scope.loadScripts = function() {
 		//every 1000ms checks if social scripts available, renders buttons and destroys interval
