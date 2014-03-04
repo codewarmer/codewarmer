@@ -14,15 +14,6 @@ ul.articles .lead {
 
 ul.articles h2{font-size:1.5em}
 
-li.L0,
-li.L1,
-li.L2,
-li.L3,
-li.L5,
-li.L6,
-li.L7,
-li.L8 { list-style-type: decimal; }
-
 .article-date {border-top: 1px solid #D6C899/*#ccc*/; margin-top: -5px; text-align: right; margin-bottom: 5px;}
 
 article h1 {margin-top:0}

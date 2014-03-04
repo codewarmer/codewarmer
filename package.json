@@ -41,7 +41,8 @@
     "grunt-env": "latest",
     "base-converter": "latest",
     "zombie": "~2.0.0-alpha24",
-    "recaptcha": "~1.2.0"
+    "recaptcha": "~1.2.0",
+    "newrelic": "~1.3.2"
   },
   "devDependencies": {
     "supertest": "latest",

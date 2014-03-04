@@ -61,3 +61,12 @@ pre.prettyprint.linenums {
 -moz-box-shadow: 37px 0 0 #002b36 inset,38px 0 0 #839496 inset;
 box-shadow: 37px 0 0 #002b36 inset,38px 0 0 #839496 inset;
 }
+
+li.L0,
+li.L1,
+li.L2,
+li.L3,
+li.L5,
+li.L6,
+li.L7,
+li.L8 { list-style-type: decimal; }

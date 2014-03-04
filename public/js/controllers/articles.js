@@ -31,7 +31,7 @@ angular.module('mean.articles').controller('ArticlesController', function ($scop
 									 { name: 'pbckcode' }
 									],
 		extraPlugins: 'pbckcode',
-		pbckcode: {'highlighter': 'PRETTIFY'}
+		pbckcode: {'highlighter': 'PRETTIFY', 'modes': [['BASH','sh'], ['HTML', 'html'], ['CSS', 'css'], ['PHP', 'php'], ['JS', 'javascript']]}
 	};
 
   function findOne() {
