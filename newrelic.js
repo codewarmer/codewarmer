@@ -8,7 +8,7 @@ exports.config = {
   /**
    * Array of application names.
    */
-  app_name : ['CodeWarmer'],
+  app_name : ['codewarmer'],
   /**
    * Your New Relic license key.
    */
