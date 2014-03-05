@@ -21,7 +21,7 @@
     "express": "latest",
     "jade": "latest",
     "mongoose": "latest",
-    "connect-mongo": "latest",
+    "connect-mongo": "git+https://github.com/kcbanner/connect-mongo.git",
     "connect-flash": "latest",
     "crypto": "latest",
     "passport": "latest",
