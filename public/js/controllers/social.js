@@ -15,11 +15,14 @@ angular.module('mean.articles').controller('socialCtrl', function($scope, $windo
 				//Google plus one
 				gapi.plusone.render('gplus', {'size': 'medium'});
 				//Facebook like
-				FB.init({
-          appId      : $window.fbkey,
-          status     : false,
-          xfbml      : true
-        });
+				if(!FB._initialized)
+					FB.init({
+						appId      : $window.fbkey,
+						status     : false,
+						xfbml      : true
+					});
+				else
+					FB.XFBML.parse();
 				// FB.ui(
 				// 	{
 				// 		method: 'feed',
@@ -29,7 +32,7 @@ angular.module('mean.articles').controller('socialCtrl', function($scope, $windo
 				// 		message: ''
 				// 	}
 				// );
-				//FB.XFBML.parse();
+				//
 				//Twitter
 				twttr.widgets.load()
 				//Cancel of interval

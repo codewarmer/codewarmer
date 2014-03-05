@@ -4,6 +4,7 @@
 .sass-cache/
 node_modules/
 public/lib
+public/snapshots/
 test/coverage/
 basetest.js
 log.txt

@@ -86,7 +86,7 @@ ArticleSchema.pre('save',function(next) {
 	// });
 
 	//Create slug
-	this.slug = Math.floor(((new Date()).getTime()/1000)) + '-' + this.title.toLowerCase().replace(/[^\w\s]+/g,'').replace(/\s+/g, '-');
+	this.slug = Math.floor(((new Date(this.created)).getTime()/1000)) + '-' + this.title.toLowerCase().replace(/[^\w\s]+/g,'').replace(/\s+/g, '-');
   next();
 });
 
