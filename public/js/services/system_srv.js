@@ -1,5 +1,6 @@
-angular.module('mean.system').factory('Page', function() {
+angular.module('mean.system').factory('Page', function($window) {
   var title = '',	description = '', keywords = '';
+	var zombie = 	$window.navigator.userAgent == 'Zombie';
 	return {
 		getTitle: function() {
 			return title || 'CodeWarmer - blog about software development and egeneering';
@@ -21,6 +22,9 @@ angular.module('mean.system').factory('Page', function() {
 		},
 		setDefault: function() {
 			title = description = keywords = '';
+		},
+		isZombie: function() {
+			return zombie;
 		}
 	};
 });

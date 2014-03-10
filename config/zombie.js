@@ -24,44 +24,47 @@ var browserOpts = {
 var baseUrl = process.env.NODE_ENV == 'development' ? 'http://localhost:3000/' : 'http://www.codewarmer.com/';
 
 function saveSnapshot(uri, body) {
-	var path = url.parse(uri).pathname;
-	//body = stripScriptTags(body);
+	//var path = url.parse(uri).pathname;
+	var uri = url.parse(uri).pathname;
+	body = stripScriptTags(body);
 	
-	if(path === '/')
-		path = '/index.html';
+	// if(path === '/')
+	// 	path = '/index.html';
 
-	if(path.indexOf('.html') === -1)
-		path += '.html';
+	// if(path.indexOf('.html') === -1)
+	// 	path += '.html';
 
-	saveUrl({'url': uri, 'path': path});
+	//saveUrl({'url': uri, 'path': path});
 
-	var filename = saveDir + path;
+	saveUrl({'uri': uri, 'html': body});
 
-	var filedir = filename.replace(/[^\/]*$/, '');
+	// var filename = saveDir + path;
 
-	fs.exists(filedir, function(exists) {
-		if(exists)
-			_save();
-		else
-			fs.mkdir(filedir, _save);
-	});
+	// var filedir = filename.replace(/[^\/]*$/, '');
 
-	function _save(){
-		fs.open(filename, 'w', function(e, fd) {
-			if(e) {
-				console.log(e);
-				return;
-			}
-			fs.write(fd, body);
-		});
-	}
+	// fs.exists(filedir, function(exists) {
+	// 	if(exists)
+	// 		_save();
+	// 	else
+	// 		fs.mkdir(filedir, _save);
+	// });
+
+	// function _save(){
+	// 	fs.open(filename, 'w', function(e, fd) {
+	// 		if(e) {
+	// 			console.log(e);
+	// 			return;
+	// 		}
+	// 		fs.write(fd, body);
+	// 	});
+	// }
 }
 
 function crawlPage(idx, arr, callback) {
   if(idx < arr.length){
 		var uri = arr[idx];
-		console.log(uri);
 		var browser = new Browser(browserOpts);
+		console.log('Now crawling: ' + uri);
 		var promise = browser.visit(uri).
 			then(function() {
 				//Turn links into absolute links
@@ -97,7 +100,7 @@ function crawlPage(idx, arr, callback) {
 
 function saveUrl(data, callback) {
 	data.date = new Date();
-	url_model.update({'url': data.url}, data, {upsert: true}, function(err,affected,raw) {
+	url_model.update({'uri': data.uri}, data, {upsert: true}, function(err,affected,raw) {
 		if(err)
 			console.log(err);
 	});

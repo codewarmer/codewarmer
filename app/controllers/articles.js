@@ -110,5 +110,5 @@ exports.accessUnpublished = function(req,res,next) {
   if(!req.article.published && !Auth.hasAccess('admin', req))
 		res.send(403);
 	else
-		next();
+		return next();
 };

@@ -44,13 +44,15 @@ walk(models_path);
 require('./config/passport')(passport);
 
 var app = express();
-
-//express settings
-require('./config/express')(app, passport, db);
-
 //Bootstrap routes
-// require('./config/routes')(app, passport, auth);
-require('./config/routes')(app, passport);
+var router = express.Router();
+
+require('./config/routes')(router, passport);
+//express settings
+require('./config/express')(app, router, passport, db);
+
+
+
 
 //Start the app by listening on <port>
 var port = process.env.PORT || config.port;

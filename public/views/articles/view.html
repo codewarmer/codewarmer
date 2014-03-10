@@ -2,7 +2,7 @@
 	<article class="box-shadow">
 		
 		<div ng-if="checkAccess('admin')">
-			<a class="btn btn-default btn-lg" href="/#!/posts/{{article.slug}}/edit">
+			<a class="btn btn-default btn-lg" href="/posts/{{article.slug}}/edit">
 				<span class="glyphicon glyphicon-edit"></span>
 			</a> 
 			<a class="btn btn-default btn-lg" data-ng-click="remove();">
@@ -17,7 +17,7 @@
 		<div compile="article.content"></div>
 		<ul class="tags list-inline" ng-if="article.tags.length">
 			<li ng-repeat="tag in article.tags">
-				<a ng-href="/#!/tags/{{tag}}" ng-bind="tag"></a>{{($last ? '' : ',')}}
+				<a ng-href="/tags/{{tag}}" ng-bind="tag"></a>{{($last ? '' : ',')}}
 			</li>
 		</ul>
 	</article>

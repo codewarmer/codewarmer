@@ -2,7 +2,6 @@ var toMinify = require('./config/files');
 
 module.exports = function(grunt) {
   // Project Configuration
-	//console.log(toMinify.relativePaths('css'));
   grunt.initConfig({
     pkg: grunt.file.readJSON('package.json'),
     watch: {

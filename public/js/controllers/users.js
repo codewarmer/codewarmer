@@ -1,6 +1,6 @@
-angular.module('mean.users').controller('UsersController', function($scope, $routeParams, $location, $rootScope, $http, Global, Auth, Loader) {
+angular.module('mean.users').controller('UsersController', function($scope, $routeParams, $location, $rootScope, $http, Global, Auth, Loader, Page) {
   $scope.global = Global;
-	
+	$scope.zombie = Page.isZombie();
 	$scope.user = {};
 
 	$scope.signIn = function() {

@@ -1,102 +1,127 @@
 var Auth = require('../app/controllers/auth');
 
-module.exports = function(app, passport) {
+module.exports = function(router, passport) {
   //User Routes
   var users = require('../app/controllers/users');
-  //app.get('/signin', users.signin);
-  //app.get('/signup', users.signup);
-  app.get('/signout', users.signout);
-  app.get('/users/me', users.me);
+  //router.get('/signin', users.signin);
+  //router.get('/signup', users.signup);
+  router.get('/signout', users.signout);
+  router.get('/users/me', users.me);
 
   //Setting up the users api
-  //app.post('/users', users.create);
-	app.post('/users', Auth.create);
+  //router.post('/users', users.create);
+	router.post('/users', Auth.create);
 
   //Setting the local strategy route
-  // app.post('/users/session', passport.authenticate('local', {
+  // router.post('/users/session', passport.authenticate('local', {
   //     failureRedirect: '/signin',
   //     failureFlash: true
   // }), users.session);
 
-	app.post('/users/session', Auth.login);
+	router.post('/users/session', Auth.login);
 
-  //Setting the facebook oauth routes
-  app.get('/auth/facebook', passport.authenticate('facebook', {
-    scope: ['email', 'user_about_me'],
-    failureRedirect: '/signin'
-  }), users.signin);
+  //Setting the FACEBOOK oauth routes
+  router.route('/auth/facebook')
+		.get(passport.authenticate('facebook', {
+			scope: ['email', 'user_about_me'],
+			failureRedirect: '/signin'
+		}))
+		.get(users.signin);
 
-  app.get('/auth/facebook/callback', passport.authenticate('facebook', {
-    failureRedirect: '/signin'
-  }), users.authCallback);
+  router.route('/auth/facebook/callback')
+		.get(passport.authenticate('facebook', {failureRedirect: '/signin'}))
+		.get(users.authCallback);
 
-  //Setting the github oauth routes
-  app.get('/auth/github', passport.authenticate('github', {
-    failureRedirect: '/signin'
-  }), users.signin);
+  //Setting the GITHUB oauth routes
+  router.route('/auth/github')
+		.get(passport.authenticate('github', {failureRedirect: '/signin'}))
+		.get(users.signin);
 
-  app.get('/auth/github/callback', passport.authenticate('github', {
-    failureRedirect: '/signin'
-  }), users.authCallback);
+  router.route('/auth/github/callback')
+		.get(passport.authenticate('github', {failureRedirect: '/signin'}))
+		.get(users.authCallback);
 
-  //Setting the twitter oauth routes
-  app.get('/auth/twitter', passport.authenticate('twitter', {
-    failureRedirect: '/signin'
-  }), users.signin);
+  //Setting the TWITTER oauth routes
+  router.route('/auth/twitter')
+		.get(passport.authenticate('twitter', {failureRedirect: '/signin'}))
+		.get(users.signin);
 
-  app.get('/auth/twitter/callback', passport.authenticate('twitter', {
-    failureRedirect: '/signin'
-  }), users.authCallback);
+  router.route('/auth/twitter/callback')
+		.get(passport.authenticate('twitter', {failureRedirect: '/signin'}))
+		.get(users.authCallback);
 
-  //Setting the google oauth routes
-  app.get('/auth/google', passport.authenticate('google', {
-    failureRedirect: '/signin',
-    scope: [
-      'https://www.googleapis.com/auth/userinfo.profile',
-      'https://www.googleapis.com/auth/userinfo.email'
-    ]
-  }), users.signin);
+  //Setting the GOOGLE oauth routes
+  router.route('/auth/google')
+		.get(passport.authenticate('google', {
+			failureRedirect: '/signin',
+			scope: [
+				'https://www.googleapis.com/auth/userinfo.profile',
+				'https://www.googleapis.com/auth/userinfo.email'
+			]
+		}))
+		.get(users.signin);
 
-  app.get('/auth/google/callback', passport.authenticate('google', {
-    failureRedirect: '/signin'
-  }), users.authCallback);
+  router.route('/auth/google/callback')
+		.get(passport.authenticate('google', {failureRedirect: '/signin'}))
+		.get(users.authCallback);
 
   //Finish with setting up the userId param
-  app.param('userId', users.user);
+  router.param('userId', users.user);
 
   //Article Routes
   var articles = require('../app/controllers/articles');
-  app.get('/articles', articles.all);
-  app.post('/articles', Auth.checkAccess('admin'), articles.create);
-  app.get('/articles/:slug', articles.accessUnpublished, articles.show);
-  app.put('/articles/:slug', Auth.checkAccess('admin'), articles.update);
-  app.del('/articles/:slug', Auth.checkAccess('admin'), articles.destroy);
+  router.route('/articles')
+		.get(articles.all)
+		.post(Auth.checkAccess('admin'), articles.create);
 
-  //Finish with setting up the articleId param
-  app.param('slug', articles.article);
+  router.route('/articles/:slug')
+		.get(articles.accessUnpublished)
+		.get(articles.show)
+		.put(Auth.checkAccess('admin'))
+		.put(articles.update)
+		.delete(Auth.checkAccess('admin'))
+		.delete(articles.destroy);
+
+  //Finish with setting up the Slug param
+  router.param('slug', articles.article);
 	
 	//Comment routes
 	var comments = require('../app/controllers/comments');
-	app.get('/comments', Auth.checkAccess('admin'), comments.all);
-	app.post('/comments', Auth.checkAccess('auth'), comments.create);
-	app.get('/comments/discussion/:discussionId', comments.commentsByDiscussion);
-	app.put('/comments/:commentId', Auth.checkAccess('admin'), comments.update);
-	app.del('/comments/:commentId', Auth.checkAccess('admin'), comments.remove);
+	router.route('/comments')
+		.get(Auth.checkAccess('admin'))
+		.get(comments.all)
+		.post(Auth.checkAccess('auth'))
+		.post(comments.create);
+
+	router.route('/comments/:commentId')
+		.put(Auth.checkAccess('admin'))
+		.put(comments.update)
+		.delete(Auth.checkAccess('admin'))
+		.delete(comments.remove);
+
+	router.get('/comments/discussion/:discussionId', comments.commentsByDiscussion);
 
 	//Tags
 	var tags = require('../app/controllers/tags');
-	app.get('/tags', tags.all);
+	router.get('/tags', tags.all);
 
 	//Admin
 	var admin = require('../app/controllers/admin_be');
-	app.get('/admin/urls', Auth.checkAccess('admin'), admin.allUrls);
-	app.post('/admin/urls', Auth.checkAccess('admin'), admin.refreshAllUrls);
-	app.post('/admin/urls/:urlId', Auth.checkAccess('admin'), admin.refreshUrl);
 
-	app.param('urlId', admin.getUrl);
+	router.route('/admin/urls')
+		.get(Auth.checkAccess('admin'))
+		.get(admin.allUrls)
+		.post(Auth.checkAccess('admin'))
+		.post(admin.refreshAllUrls);
+
+	router.route('/admin/urls/:urlId')
+		.post(Auth.checkAccess('admin'))
+		.post(admin.refreshUrl);
+
+	router.param('urlId', admin.getUrl);
 
   //Return angular.js app index page
   var index = require('../app/controllers/index');
-  app.get('*', index.render);
+  router.get('*', index.render);
 
 };

@@ -8,7 +8,7 @@
 		</tr></thead>
 		<tbody>
 			<tr ng-repeat="url in urls">
-				<td ng-bind="url.url"></td>
+				<td><a target="_self" ng-bind="url.uri" ng-href="/?_escaped_fragment_={{url.uri}}"></a></td>
 				<td ng-bind="url.date | timeago"></td>
 				<td><a href="" ng-click="refreshUrl($index)">refresh</a></td>
 			</tr>

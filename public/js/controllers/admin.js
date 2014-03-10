@@ -5,7 +5,7 @@ angular.module('mean.admin').controller('adminCtrl', function($scope, $http) {
 	getUrls();
 
 	$scope.refreshAll = function() {
-		console.log('test');
+		//console.log('refeshAll');
 		$http.post('/admin/urls', {refreshAll: true}).
 			success(function(urls) {
 				$scope.urls = urls;

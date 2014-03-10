@@ -1,6 +1,5 @@
-angular.module('mean.articles').controller('socialCtrl', function($scope, $window, $interval, $location) {
-	
-	$scope.zombie = $window.navigator.userAgent == 'Zombie';
+angular.module('mean.articles').controller('socialCtrl', function($scope, $window, $interval, $location, Page) {
+	$scope.zombie = Page.isZombie();
 	$scope.$watch('article.tags', function() {
 		if($scope.article.tags)
 			$scope.hashtags = $scope.article.tags.join(',');

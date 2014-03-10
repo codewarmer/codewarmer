@@ -8,3 +8,5 @@ public/snapshots/*
 test/coverage/
 basetest.js
 log.txt
+v8.log
+newrelic_agent.log
