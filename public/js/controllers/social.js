@@ -12,7 +12,7 @@ angular.module('mean.articles').controller('socialCtrl', function($scope, $windo
 		var stop = $interval(function() {
 			if(gapi && FB && twttr && $scope.article.title && $scope.hashtags){
 				//Google plus one
-				gapi.plusone.render('gplus', {'size': 'medium'});
+				gapi.plus.render('gplus', {'data-annotation': 'vertical-bubble', 'data-href': url});
 				//Facebook like
 				if(!FB._initialized)
 					FB.init({
