@@ -18,8 +18,8 @@ ul.articles h2{font-size:1.5em}
 
 article h1 {margin-top:0}
 .tags {border-top: 1px solid #ccc;}
-.social-buttons div{display:inline-block;}
-.fb-like {margin-right: 35px;}
+.social-buttons div{display:inline-block; margin: 0 5px !important;}
+.fb-share-button > span {vertical-align:initial !important;}
 /* #comments li {border-bottom: 1px solid #CCC; padding: 10px; background:#F7F7F7;} */
 /* #comments li:last-child {border-bottom:none;} */
 #comments li {position:relative}

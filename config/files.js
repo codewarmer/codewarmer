@@ -36,7 +36,6 @@ module.exports = {
 
 			//Application Controllers
 			'/js/controllers/articles.js',
-			'/js/controllers/social.js',
 			'/js/controllers/comments.js',
 			'/js/controllers/users.js',
 			'/js/controllers/index.js',
@@ -46,7 +45,6 @@ module.exports = {
 			//'/js/init.js',
 
 			//Third party scripts
-			'/js/social_scripts.js',
 			'/js/analytics.js'
 		],
 		css: [
@@ -61,7 +59,8 @@ module.exports = {
 		ckeditor: ['/static_lib/ckeditor/ckeditor.js', '/lib/ng-ckeditor/ng-ckeditor.src.js'],
 		prettifyToMinify: ['/lib/google-code-prettify/src/prettify.js',	'/lib/google-code-prettify/src/lang-css.js'],
 		prettify: ['/js/prettify.min.js'],
-		recaptcha: ['//www.google.com/recaptcha/api/js/recaptcha_ajax.js', '/lib/angular-recaptcha/release/angular-recaptcha.min.js']
+		recaptcha: ['//www.google.com/recaptcha/api/js/recaptcha_ajax.js', '/lib/angular-recaptcha/release/angular-recaptcha.min.js'],
+		addthis: ['//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-5201de684b543d8f&async=1']
 	},
 	//Minified production ready files
 	production: {
@@ -72,7 +71,8 @@ module.exports = {
 		],
 		ckeditor: ['/static_lib/ckeditor/ckeditor.js', '/lib/ng-ckeditor/ng-ckeditor.js'],
 		prettify: ['/js/prettify.min.js'],
-		recaptcha: ['//www.google.com/recaptcha/api/js/recaptcha_ajax.js', '/lib/angular-recaptcha/release/angular-recaptcha.min.js']
+		recaptcha: ['//www.google.com/recaptcha/api/js/recaptcha_ajax.js', '/lib/angular-recaptcha/release/angular-recaptcha.min.js'],
+		addthis: ['//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-5201de684b543d8f&async=1']
 	},
 	getPaths: function(type) {
 		return type ? this[process.env.NODE_ENV][type] : this[process.env.NODE_ENV];

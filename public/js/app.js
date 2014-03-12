@@ -14,7 +14,8 @@ var mean = angular.module('mean', ['ngCookies',
 												'mean.admin', 
 												'AutoFillSync', //provides sync for stored password and autofill
 												'Prettify', 
-												'TimeAgo' // Contains timeago filter
+												'TimeAgo', // Contains timeago filter
+												'AddThis'
 											 ]);
 
 angular.module('mean.system', []);
