@@ -25,8 +25,8 @@ module.exports = function(router, passport) {
 		.get(passport.authenticate('facebook', {
 			scope: ['email', 'user_about_me'],
 			failureRedirect: '/signin'
-		}))
-		.get(users.signin);
+		}));
+
 
   router.route('/auth/facebook/callback')
 		.get(passport.authenticate('facebook', {failureRedirect: '/signin'}))
@@ -34,8 +34,8 @@ module.exports = function(router, passport) {
 
   //Setting the GITHUB oauth routes
   router.route('/auth/github')
-		.get(passport.authenticate('github', {failureRedirect: '/signin'}))
-		.get(users.signin);
+		.get(passport.authenticate('github', {failureRedirect: '/signin'}));
+
 
   router.route('/auth/github/callback')
 		.get(passport.authenticate('github', {failureRedirect: '/signin'}))
@@ -43,8 +43,8 @@ module.exports = function(router, passport) {
 
   //Setting the TWITTER oauth routes
   router.route('/auth/twitter')
-		.get(passport.authenticate('twitter', {failureRedirect: '/signin'}))
-		.get(users.signin);
+		.get(passport.authenticate('twitter', {failureRedirect: '/signin'}));
+
 
   router.route('/auth/twitter/callback')
 		.get(passport.authenticate('twitter', {failureRedirect: '/signin'}))
@@ -58,8 +58,8 @@ module.exports = function(router, passport) {
 				'https://www.googleapis.com/auth/userinfo.profile',
 				'https://www.googleapis.com/auth/userinfo.email'
 			]
-		}))
-		.get(users.signin);
+		}));
+
 
   router.route('/auth/google/callback')
 		.get(passport.authenticate('google', {failureRedirect: '/signin'}))
