@@ -1,5 +1,6 @@
 module.exports = {
   db: "mongodb://localhost/mean-dev",
+	secret: process.env.secret || 'MEAN',
   app: {
     name: "MEAN - A Modern Stack - Development"
   },
