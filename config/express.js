@@ -118,7 +118,7 @@ module.exports = function(app, router, passport, db) {
 	app.use(function(req,res,next) {
 		//console.log(req.header('Referer'));
 		var referer = req.header('Referer');
-		if(/\/auth\//.test(req.url) && !/\/(signup|signin)/.test(referer)){
+		if(referer && /\/auth\//.test(req.url) && !/\/(signup|signin)/.test(referer)){
 			req.session.redirect = url.parse(referer).path;
 			req.session.save();
 		}
