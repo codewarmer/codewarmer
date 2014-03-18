@@ -99,7 +99,7 @@ ArticleSchema.post('save', function(doc) {
 	Article = mongoose.model('Article');
 	opts = {
 		map: function() {
-			if(!this.tags)
+			if(!this.tags || !this.published)
 				return;
 			
 			for(i in this.tags)
