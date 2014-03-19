@@ -78,13 +78,6 @@ ArticleSchema.path('title').validate(function(title) {
  */
 
 ArticleSchema.pre('save',function(next) {
-	//Save tags
-	// Tag = Tag || mongoose.model('Tag');
-	// this.tags.forEach(function(element, index, Array) {
-	// 	var newTag = new Tag({'_id': element});
-	// 	newTag.save();
-	// });
-
 	//Create slug
 	this.slug = Math.floor(((new Date(this.created)).getTime()/1000)) + '-' + this.title.toLowerCase().replace(/[^\w\s]+/g,'').replace(/\s+/g, '-');
   next();
@@ -102,12 +95,12 @@ ArticleSchema.post('save', function(doc) {
 			if(!this.tags || !this.published)
 				return;
 			
-			for(i in this.tags)
+			for(var i in this.tags)
 				emit(this.tags[i],1);
 		},
 		reduce: function(prev,curr) {
 			var count = 0;
-			for(i in curr)
+			for(var i in curr)
 				count += curr[i];
 
 			return count;

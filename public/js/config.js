@@ -66,12 +66,14 @@ angular.module('mean').config(function($routeProvider, $locationProvider, $httpP
 				});
 			});
 			return deferred.promise;
-		}
-
+		};
 	}
 
 	function safeApply(scope, fn){
-		(scope.$$phase || scope.$root.$$phase) ? fn() : scope.$apply(fn);
+		if(scope.$$phase || scope.$root.$$phase) 
+			fn();
+		else
+			scope.$apply(fn);
 	}
 }).run(function($rootScope, $location, $http, Auth) {
 	//Check access parameter for path

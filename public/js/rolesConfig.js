@@ -6,4 +6,4 @@
 			'auth': ['user','admin'],
 			'admin': ['admin']
 	};
-})(typeof exports === 'undefined' ? this['rolesConfig'] = {} : exports);
+})(typeof exports === 'undefined' ? this.rolesConfig = {} : exports);

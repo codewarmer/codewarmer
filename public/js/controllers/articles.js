@@ -16,8 +16,7 @@ angular.module('mean.articles').controller('ArticlesController', function ($scop
 
 	$scope.ckeditorConfig = {
 		lang: 'en',
-		toolbar_full: [{ name: 'basicstyles',
-                     items: [ 'Bold', 'Italic', 'Strike', 'Underline' ] },
+		toolbar_full: [{ name: 'basicstyles', items: [ 'Bold', 'Italic', 'Strike', 'Underline' ] },
                    { name: 'paragraph', items: [ 'BulletedList', 'NumberedList', 'Blockquote' ] },
                    { name: 'editing', items: ['JustifyLeft', 'JustifyCenter', 'JustifyRight', 'JustifyBlock' ] },
                    { name: 'links', items: [ 'Link', 'Unlink', 'Anchor' ] },
@@ -28,8 +27,7 @@ angular.module('mean.articles').controller('ArticlesController', function ($scop
                    { name: 'forms', items: [ 'Outdent', 'Indent' ] },
                    { name: 'clipboard', items: [ 'Undo', 'Redo' ] },
                    { name: 'document', items: [ 'PageBreak', 'Source', 'pbckcode' ] },
-									 { name: 'pbckcode' }
-									],
+                   { name: 'pbckcode' }],
 		extraPlugins: 'pbckcode',
 		pbckcode: {'highlighter': 'PRETTIFY', 'modes': [['BASH','sh'], ['HTML', 'html'], ['CSS', 'css'], ['PHP', 'php'], ['JS', 'javascript']]}
 	};

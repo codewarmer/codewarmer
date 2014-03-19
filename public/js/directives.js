@@ -81,5 +81,5 @@ angular.module('AddThis',[]).directive('addthisToolbox', function($window, Loade
 					});
 
         }
-    }
+    };
 });

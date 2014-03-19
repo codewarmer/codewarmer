@@ -1,6 +1,6 @@
 angular.module('mean.system').factory('Page', function($window) {
   var title = '',	description = '', keywords = '';
-	var zombie = 	$window.navigator.userAgent == 'Zombie';
+	var zombie = $window.navigator.userAgent == 'Zombie';
 	return {
 		getTitle: function() {
 			return title || 'CodeWarmer - blog about software development and egeneering';
@@ -46,13 +46,13 @@ angular.module('mean.system').factory('Loader', function($window, $rootScope, $i
 			
 			callback = typeof config == 'function' ? config : callback;
 			if(loading[lib].status == 1)
-			 	return callback();
+				return callback();
 
 			if(config && config.sync){
 
-				function syncLoader(files){
+				var syncLoader = function(files){
 					var file = files.shift();
-					if(files.length == 0){
+					if(files.length === 0){
 						callbacks[lib] = [];
 						callbacks[lib].push(libModuleLoader(lib));
 						callbacks[lib].push(callback);
@@ -62,8 +62,10 @@ angular.module('mean.system').factory('Loader', function($window, $rootScope, $i
 							return syncLoader(files);
 						});
 					}
+
 					loadLib(file);
-				}
+				};
+
 				var files = $window.meanFiles[lib];
 				syncLoader(files);
 				return;
@@ -114,7 +116,7 @@ angular.module('mean.system').factory('Loader', function($window, $rootScope, $i
 					case 'ckeditor': moduleName = 'ngCkeditor'; break;
 					case 'recaptcha': moduleName = 'vcRecaptcha'; break;
 				}
-				if(!moduleName) return function() {}
+				if(!moduleName) return function() {};
 				return function() {
 					var queue = angular.module(moduleName)._invokeQueue;
 					queue.forEach(function(val) {
@@ -122,16 +124,9 @@ angular.module('mean.system').factory('Loader', function($window, $rootScope, $i
 						// val[2][0] - name of entity, val[2][1] - services to inject and function
 						$window.meanProviders[val[0]][val[1]](val[2][0],val[2][1]);
 					});
-				}
+				};
 			}
 
 		}
 	};
 });
-
-// Loader.includeController('ckeditor', function() {
-// 	$scope.$apply(function() {
-// 		//$scope.showEditor = true;			
-// 		$compile($element)($scope);
-// 	});
-// });
