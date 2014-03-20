@@ -34,7 +34,7 @@ module.exports = function(app, router, passport, db) {
   //Don't use logger for test env
   if (process.env.NODE_ENV !== 'test') {
 		//Morgan is the former express.logger
-    app.use(require('morgan')('dev'));
+    app.use(require('morgan')(config.logFormat));
   }
 
   //Set views path, template engine and default layout

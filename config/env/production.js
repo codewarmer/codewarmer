@@ -1,6 +1,7 @@
 module.exports = {
   db: process.env.MONGOHQ_DB,
 	secret: process.env.SECRET,
+	logFormat: 'default',
   app: {
     name: "CodeWarmer"
   },
