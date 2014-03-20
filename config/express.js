@@ -78,7 +78,7 @@ module.exports = function(app, router, passport, db) {
 		var facebook =  /facebookexternalhit/.test(req.headers['user-agent']);
 		var google = /google\.com\/\+/.test(req.headers['user-agent']);
 		//Not a search bot
-		if(typeof fragment === 'undefined' || !facebook || !google) {
+		if(typeof fragment === 'undefined' && !facebook && !google) {
 			next();
 			return;
 		}
