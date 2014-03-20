@@ -75,14 +75,17 @@ module.exports = function(app, router, passport, db) {
 	//SEO for Angular.js
 	app.use(function(req,res,next) {
 		var fragment = req.query._escaped_fragment_;
-
+		var facebook =  /facebookexternalhit/.test(req.headers['user-agent']);
+		var google = /google\.com\/\+/.test(req.headers['user-agent']);
 		//Not a search bot
-		if(typeof fragment == 'undefined') {
+		if(typeof fragment === 'undefined' || !facebook || !google) {
 			next();
 			return;
 		}
-		
 
+		var uri = req.url;
+		if(typeof fragment !== 'undefined')
+			uri = fragment;
 
 		// if(fragment === '' || fragment === '/')
 		// 	fragment = '/index.html';
@@ -91,10 +94,10 @@ module.exports = function(app, router, passport, db) {
 		// if(fragment.charAt(0) !== '/')
 		// 	fragment = '/' + fragment;
 
-		if(fragment.charAt(0) !== '/' || fragment === '')
-			fragment = '/' + fragment;
+		if(uri.charAt(0) !== '/' || uri === '')
+			uri = '/' + uri;
 
-		url_model.load(fragment, function(err, data) {
+		url_model.load(uri, function(err, data) {
 			if(err || !data)
 				return res.send(404);
 			else
