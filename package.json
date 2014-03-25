@@ -50,7 +50,8 @@
     "method-override": "~1.0.0",
     "session": "~0.1.0",
     "morgan": "~1.0.0",
-    "static-favicon": "~1.0.0"
+    "static-favicon": "~1.0.0",
+    "phantom": "~0.5.7"
   },
   "devDependencies": {
     "supertest": "latest",

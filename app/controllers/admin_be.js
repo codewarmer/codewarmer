@@ -32,7 +32,7 @@ exports.refreshAllUrls = function(req,res) {
 };
 
 exports.refreshUrl = function(req,res) {
-  crawler.crawlOne(req.urlDoc.url, function(err) {
+  crawler.crawlOne(req.urlDoc.uri, function(err) {
 		if(err)	return res.send(500);
 		url_model.findOne({'_id': req.urlDoc._id}, function(err, url) {
 			if(err)
@@ -40,5 +40,26 @@ exports.refreshUrl = function(req,res) {
 			else
 				return res.jsonp(url);
 		});
+	});
+};
+
+exports.addUrl = function(req,res) {
+  crawler.crawlOne(req.body.path, function(err) {
+		if(err)	return res.send(500);
+		url_model.findOne({'uri': req.body.path}, function(err, url) {
+			if(err)
+				res.send(500);
+			else
+				return res.jsonp(url);
+		});
+	});
+};
+
+exports.deleteUrl = function(req,res) {
+  req.urlDoc.remove(function(err) {
+		if(err)
+			return res.send(500);
+		else
+			return res.send(200);
 	});
 };

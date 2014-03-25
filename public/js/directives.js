@@ -62,24 +62,24 @@ angular.module('Compile',[]).directive('compile', function($compile) {
 	};
 });
 
-angular.module('AddThis',[]).directive('addthisToolbox', function($window, Loader) {
+angular.module('AddThis',[]).directive('addthisToolbox', function($window, Loader, Page) {
     return {
         restrict: 'C',
         transclude: true,
         replace: true,
         template: '<div ng-transclude></div>',
         link: function ($scope, element, attrs) {
-					Loader.load('addthis', {ensure: 'addthis'}, function() {
-						addthis.layers({
-							'theme' : 'transparent',
-							'share' : {
-								'position' : 'left',
-								'numPreferredServices' : 5
-							}   
+					if(!Page.isCrawler())
+						Loader.load('addthis', {ensure: 'addthis'}, function() {
+							addthis.layers({
+								'theme' : 'transparent',
+								'share' : {
+									'position' : 'left',
+									'numPreferredServices' : 5
+								}   
+							});
+							addthis.init();
 						});
-            addthis.init();
-					});
-
         }
     };
 });

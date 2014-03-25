@@ -72,7 +72,8 @@ module.exports = function(router, passport) {
   var articles = require('../app/controllers/articles');
   router.route('/articles')
 		.get(articles.all)
-		.post(Auth.checkAccess('admin'), articles.create);
+		.post(Auth.checkAccess('admin'))
+		.post(articles.create);
 
   router.route('/articles/:slug')
 		.get(articles.accessUnpublished)
@@ -112,11 +113,15 @@ module.exports = function(router, passport) {
 		.get(Auth.checkAccess('admin'))
 		.get(admin.allUrls)
 		.post(Auth.checkAccess('admin'))
-		.post(admin.refreshAllUrls);
+		.post(admin.addUrl)
+		.put(Auth.checkAccess('admin'))
+		.put(admin.refreshAllUrls);
 
 	router.route('/admin/urls/:urlId')
 		.post(Auth.checkAccess('admin'))
-		.post(admin.refreshUrl);
+		.post(admin.refreshUrl)
+		.delete(Auth.checkAccess('admin'))
+		.delete(admin.deleteUrl);
 
 	router.param('urlId', admin.getUrl);
 
