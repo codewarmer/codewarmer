@@ -9,16 +9,6 @@ var stripScriptTags = function(html) {
   return html.replace(scriptTagRegex,'');
 }
 
-var browserOpts = {
-	waitFor: 5000,
-	loadCSS: true,
-	runScripts: true,
-	userAgent: 'Zombie',
-	windowName: 'nodejs',
-	//silent: true
-	debug: true
-};
-
 var baseUrl = process.env.NODE_ENV == 'development' ? 'http://localhost:3000/' : 'http://www.codewarmer.com/';
 
 function saveSnapshot(data) {
@@ -45,7 +35,6 @@ function crawlSite(idx, arr, page, callback) {
 			crawlSite(idx, arr, page, callback);
 	});
 }
-//var phInstance, phPage;
 
 function startPhantom(cb){
 	phantom.create(function(ph) {
@@ -58,8 +47,6 @@ function startPhantom(cb){
 }
 
 function exitPhantom(ph){
-	// phInstance.exit();
-	// phInstance = null;
 	ph.exit();
 }
 
@@ -67,23 +54,22 @@ function crawlUrl(path, page, cb){
 	uri = url.resolve(baseUrl, path);
 
 	page.open(uri, function(status) {
-		page.evaluate(function() {
-			var linkTags = document.querySelectorAll('a:not([rel="nofollow"])');
-			var links = [];
-			for(var i=0,ln; ln = linkTags[i]; i++)
-				links.push(ln.getAttribute('href'));
-
-			return {
-				'links': links,
-				'html': document.documentElement.outerHTML
-			};
-		}, function(result) {
+		var evaluateCb = function(result) {
 			result.uri = path;
 			cb(result);
-			//ph.exit();
-			//console.log('asd');
-		});
-		console.log('opened');
+		};
+		//@TODO: find a way how to check is page rendered
+		setTimeout(function() {
+			if(status=='success')
+				page.evaluate(function() {
+					var linkTags = document.querySelectorAll('a:not([rel="nofollow"])');
+					var links = [];
+					for(var i=0,ln; ln = linkTags[i]; i++)
+						links.push(ln.getAttribute('href'));
+
+				  return {'links': links,'html': document.documentElement.outerHTML};
+				}, evaluateCb);
+		},2000);
 	});
 
 }
