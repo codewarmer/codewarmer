@@ -1,4 +1,4 @@
-var mongoose = require('mongoose'), url_model = mongoose.model('Url'), crawler = require('../../config/zombie');
+var mongoose = require('mongoose'), url_model = mongoose.model('Url'), crawler = require('../../utils/phantom');
 
 exports.getUrl = function(req,res,next,id) {
   url_model.findOne({'_id': id}, function(err,url) {
