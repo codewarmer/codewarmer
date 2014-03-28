@@ -94,7 +94,7 @@ module.exports = function(app, router, passport, db) {
 			if(err || !snapshot)
 				return res.send(404);
 			else
-				return res.send(snapshot.html);
+				return res.send(200, snapshot.html);
 		});
 
 	});
