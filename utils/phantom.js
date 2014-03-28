@@ -12,7 +12,7 @@ var stripScriptTags = function(html) {
 var baseUrl = process.env.NODE_ENV == 'development' ? 'http://localhost:3000/' : 'http://www.codewarmer.com/';
 
 function saveSnapshot(data) {
-	data.html = stripScriptTags(data.html);
+	data.html = '<!DOCTYPE html>\n' + stripScriptTags(data.html);
 	
 	data.date = new Date();
 	Snapshot.update({'path': data.path}, data, {upsert: true}, function(err,affected,raw) {
