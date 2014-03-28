@@ -4,8 +4,8 @@
 
 var mongoose = require('mongoose'), Schema = mongoose.Schema;
 
-var UrlSchema = new Schema({
-	uri: String,
+var SnapshotSchema = new Schema({
+	path: String,
 	date: {
 		type: Date,
 		default: Date.now
@@ -16,10 +16,10 @@ var UrlSchema = new Schema({
 /**
  * Statics
  */
-UrlSchema.statics.load = function(uri, cb) {
+SnapshotSchema.statics.load = function(path, cb) {
   this.findOne({
-    uri: uri
+    path: path
   }).exec(cb);
 };
 
-mongoose.model('Url', UrlSchema);
+mongoose.model('Snapshot', SnapshotSchema);
