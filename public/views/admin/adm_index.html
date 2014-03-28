@@ -1,9 +1,9 @@
 <section ng-controller="adminCtrl">
 	<button class="btn btn-danger refresh-all" ng-click="refreshAll()">Crawl site</button>
-	<form method="post" class="form-horizontal" ng-submit="addNewUrl()">
+	<form method="post" class="form-horizontal" ng-submit="addNewSnapshot()">
 		<div class="controls">
 			<div class="input-group">
-				<input type="text" name="newUrl" placeholder="New Url" class="form-control" ng-model="newUrl" />
+				<input type="text" name="newSnapshot" placeholder="New Path" class="form-control" ng-model="newSnapshot" />
 				<span class="input-group-btn">
 					<button class="btn btn-success" type="submit"><span class="glyphicon glyphicon-plus"></span></button>
 				</span>
@@ -12,18 +12,18 @@
 	</form>
 	<table class="table table-hover">
 		<thead><tr>
-			<th>URL</th>
+			<th>Path</th>
 			<th>Snapshot Date</th>
 			<th>Actions</th>
 		</tr></thead>
 		<tbody>
-			<tr ng-repeat="url in urls">
-				<td><a target="_self" ng-bind="url.uri" ng-href="/?_escaped_fragment_={{url.uri}}"></a></td>
-				<td ng-bind="url.date | timeago"></td>
+			<tr ng-repeat="snapshot in snapshots">
+				<td><a target="_self" ng-bind="snapshot.path" ng-href="/?_escaped_fragment_={{snapshot.path}}"></a></td>
+				<td ng-bind="snapshot.date | timeago"></td>
 				<td>
 					<span class="btn-group">
-						<a href="" class="btn btn-success" ng-click="refreshUrl($index)"><span class="glyphicon glyphicon-refresh"></span></a>
-						<a href="" class="btn btn-warning" ng-click="deleteUrl($index)"><span class="glyphicon glyphicon-trash"></span></a>
+						<a href="" class="btn btn-success" ng-click="refreshSnapshot($index)"><span class="glyphicon glyphicon-refresh"></span></a>
+						<a href="" class="btn btn-warning" ng-click="deleteSnapshot($index)"><span class="glyphicon glyphicon-trash"></span></a>
 					</span>
 				</td>
 			</tr>

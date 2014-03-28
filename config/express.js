@@ -11,7 +11,7 @@ var express = require('express'),
     path = require('path'),
     url = require('url'),
     mongoose = require('mongoose'),
-    url_model = mongoose.model('Url');
+    Snapshot = mongoose.model('Snapshot');
 
 module.exports = function(app, router, passport, db) {
   app.set('showStackError', true);    
@@ -83,39 +83,20 @@ module.exports = function(app, router, passport, db) {
 			return;
 		}
 
-		var uri = req.url;
+		var path = req.url;
 		if(typeof fragment !== 'undefined')
-			uri = fragment;
+			path = fragment;
 
-		// if(fragment === '' || fragment === '/')
-		// 	fragment = '/index.html';
-		
-		
-		// if(fragment.charAt(0) !== '/')
-		// 	fragment = '/' + fragment;
+		if(path.charAt(0) !== '/' || path === '')
+			path = '/' + path;
 
-		if(uri.charAt(0) !== '/' || uri === '')
-			uri = '/' + uri;
-
-		url_model.load(uri, function(err, data) {
-			if(err || !data)
+		Snapshot.load(path, function(err, snapshot) {
+			if(err || !snapshot)
 				return res.send(404);
 			else
-				return res.send(data.html);
+				return res.send(snapshot.html);
 		});
 
-		// if(fragment.indexOf('.html') === -1)
-		// 	fragment += '.html';
-
-		// try {
-		// 	var file = path.normalize(__dirname + '/../public/snapshots' + fragment);
-		// 	console.log(file);
-		// 	res.sendfile(file);
-		// }
-		// catch(err) {
-		// 	console.log(err);
-		// 	res.send(404);
-		// }
 	});
 	
 	app.use(function(req,res,next) {

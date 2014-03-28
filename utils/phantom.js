@@ -1,7 +1,7 @@
 var phantom = require('phantom'),
 url = require('url'),
 mongoose = require('mongoose'),
-url_model = mongoose.model('Url');
+Snapshot = mongoose.model('Snapshot');
 
 var scriptTagRegex = /<script\b[^<]*(?:(?!<\/script>)<[^<]*)*<\/script>/gi;
 
@@ -15,7 +15,7 @@ function saveSnapshot(data) {
 	data.html = stripScriptTags(data.html);
 	
 	data.date = new Date();
-	url_model.update({'uri': data.uri}, data, {upsert: true}, function(err,affected,raw) {
+	Snapshot.update({'path': data.path}, data, {upsert: true}, function(err,affected,raw) {
 		if(err)
 			console.log(err);
 	});
@@ -55,7 +55,7 @@ function crawlUrl(path, page, cb){
 
 	page.open(uri, function(status) {
 		var evaluateCb = function(result) {
-			result.uri = path;
+			result.path = path;
 			cb(result);
 		};
 		//@TODO: find a way how to check is page rendered

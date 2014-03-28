@@ -1,49 +1,49 @@
 angular.module('mean.admin').controller('adminCtrl', function($scope, $http) {
-  $scope.urls = [
-		{uri: 'asdasd', date: new Date()}
+  $scope.snapshots = [
+		{path: 'asdasd', date: new Date()}
 	];
-	getUrls();
+	getSnapshots();
 
 	$scope.refreshAll = function() {
 		//console.log('refeshAll');
-		$http.put('/admin/urls').
-			success(function(urls) {
-				$scope.urls = urls;
+		$http.put('/admin/snapshots').
+			success(function(snapshots) {
+				$scope.snapshots = snapshots;
 			});
 	};
 
-	$scope.refreshUrl = function(id) {
-		$http.post('/admin/urls/'+$scope.urls[id]._id).
-			success(function(url) {
-				$scope.urls[id].date = url.date;
+	$scope.refreshSnapshot = function(id) {
+		$http.post('/admin/snapshots/'+$scope.snapshots[id]._id).
+			success(function(snapshot) {
+				$scope.snapshots[id].date = snapshot.date;
 			});
 	};
 
-	$scope.deleteUrl = function(id) {
-		$http.delete('/admin/urls/'+$scope.urls[id]._id).
-			success(function(url) {
-				$scope.urls.splice(id,1);
+	$scope.deleteSnapshot = function(id) {
+		$http.delete('/admin/snapshots/'+$scope.snapshots[id]._id).
+			success(function(snapshot) {
+				$scope.snapshots.splice(id,1);
 			});
 	};
 	
-	$scope.addNewUrl = function() {
-		$http.post('/admin/urls', {'path': $scope.newUrl}).
-			success(function(url) {
-				$scope.newUrl = '';
-				for(var i=0,el; el = $scope.urls[i]; i++){
-					if(el.uri == url.uri){
-						el.date = url.date;
+	$scope.addNewSnapshot = function() {
+		$http.post('/admin/snapshots', {'path': $scope.newSnapshot}).
+			success(function(snapshot) {
+				$scope.newSnapshot = '';
+				for(var i=0,el; el = $scope.snapshots[i]; i++){
+					if(el.uri == snapshot.uri){
+						el.date = snapshot.date;
 						return;
 					}
 				}
-				$scope.urls.push(url);
+				$scope.snapshots.push(snapshot);
 			});
 	};
 
-	function getUrls() {
-		$http.get('/admin/urls')
-		.success(function(urls) {
-			$scope.urls = urls;
+	function getSnapshots() {
+		$http.get('/admin/snapshots')
+		.success(function(snapshots) {
+			$scope.snapshots = snapshots;
 		});
 	}
 });

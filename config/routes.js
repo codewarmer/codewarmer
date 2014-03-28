@@ -109,21 +109,21 @@ module.exports = function(router, passport) {
 	//Admin
 	var admin = require('../app/controllers/admin_be');
 
-	router.route('/admin/urls')
+	router.route('/admin/snapshots')
 		.get(Auth.checkAccess('admin'))
-		.get(admin.allUrls)
+		.get(admin.allSnapshots)
 		.post(Auth.checkAccess('admin'))
-		.post(admin.addUrl)
+		.post(admin.addSnapshot)
 		.put(Auth.checkAccess('admin'))
-		.put(admin.refreshAllUrls);
+		.put(admin.refreshAllSnapshots);
 
-	router.route('/admin/urls/:urlId')
+	router.route('/admin/snapshots/:snapshotId')
 		.post(Auth.checkAccess('admin'))
-		.post(admin.refreshUrl)
+		.post(admin.refreshSnapshot)
 		.delete(Auth.checkAccess('admin'))
-		.delete(admin.deleteUrl);
+		.delete(admin.deleteSnapshot);
 
-	router.param('urlId', admin.getUrl);
+	router.param('snapshotId', admin.getSnapshot);
 
   //Return angular.js app index page
   var index = require('../app/controllers/index');
