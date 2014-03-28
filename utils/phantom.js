@@ -3,23 +3,7 @@ url = require('url'),
 mongoose = require('mongoose'),
 Snapshot = mongoose.model('Snapshot');
 
-var scriptTagRegex = /<script\b[^<]*(?:(?!<\/script>)<[^<]*)*<\/script>/gi;
-
-var stripScriptTags = function(html) {
-  return html.replace(scriptTagRegex,'');
-}
-
 var baseUrl = process.env.NODE_ENV == 'development' ? 'http://localhost:3000/' : 'http://www.codewarmer.com/';
-
-function saveSnapshot(data) {
-	data.html = '<!DOCTYPE html>\n' + stripScriptTags(data.html);
-	
-	data.date = new Date();
-	Snapshot.update({'path': data.path}, data, {upsert: true}, function(err,affected,raw) {
-		if(err)
-			console.log(err);
-	});
-}
 
 function crawlSite(idx, arr, page, callback) {
 	crawlUrl(arr[idx], page, function(data) {
@@ -27,7 +11,7 @@ function crawlSite(idx, arr, page, callback) {
 			if(arr.indexOf(link) < 0)
 				arr.push(link);
 		});
-		saveSnapshot(data);
+		Snapshot.upsert(data);
 
 		if(++idx === arr.length)
 			callback();
@@ -44,10 +28,6 @@ function startPhantom(cb){
 			cb(ph, page);
 		});
 	});
-}
-
-function exitPhantom(ph){
-	ph.exit();
 }
 
 function crawlUrl(path, page, cb){
@@ -77,7 +57,7 @@ function crawlUrl(path, page, cb){
 exports.crawlAll = function(callback) {
 	startPhantom(function(ph,page) {
 		crawlSite(0, ['/'], page, function() {
-			exitPhantom(ph);
+			ph.exit();
 			callback();
 		});
 	});
@@ -86,8 +66,8 @@ exports.crawlAll = function(callback) {
 exports.crawlOne = function(path, callback) {
 	startPhantom(function(ph,page) {
 		crawlUrl(path, page, function(data) {
-			saveSnapshot(data);
-			exitPhantom(ph);
+			Snapshot.upsert(data);
+			ph.exit();
 			callback();
 		});
 	});
