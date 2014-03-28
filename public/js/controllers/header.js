@@ -46,4 +46,5 @@ angular.module('mean.system').controller('headCtrl', function($scope, Page) {
 	$scope.getTitle = Page.getTitle;
 	$scope.getDescription = Page.getDescription;
 	$scope.getKeywords = Page.getKeywords;
+	$scope.getUrl = Page.getUrl;
 });

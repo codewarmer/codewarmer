@@ -1,4 +1,4 @@
-angular.module('mean.system').factory('Page', function($window) {
+angular.module('mean.system').factory('Page', function($window, $location) {
   var title = '',	description = '', keywords = '';
 	var crawler = /PhantomJS/.test($window.navigator.userAgent);
 	return {
@@ -19,6 +19,9 @@ angular.module('mean.system').factory('Page', function($window) {
 		},
 		setKeywords: function(newKeywords) {
 			keywords = newKeywords;
+		},
+		getUrl: function() {
+			return $location.absUrl();
 		},
 		setDefault: function() {
 			title = description = keywords = '';
