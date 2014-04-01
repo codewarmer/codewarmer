@@ -98,10 +98,10 @@ ArticleSchema.post('save', function(doc) {
 			for(var i in this.tags)
 				emit(this.tags[i],1);
 		},
-		reduce: function(prev,curr) {
+		reduce: function(key,values) {
 			var count = 0;
-			for(var i in curr)
-				count += curr[i];
+			for(var i in values)
+				count += values[i];
 
 			return count;
 		},
