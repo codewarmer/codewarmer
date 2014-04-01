@@ -42,7 +42,7 @@ var CommentSchema = new Schema({
  */
 
 CommentSchema.path('text').validate(function(text) {
-  return text.length;
+  return text && text.length;
 }, 'Comment text can not be empty');
 
 /**
