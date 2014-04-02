@@ -8,14 +8,10 @@ User = mongoose.model('User'),
 Article = mongoose.model('Article'),
 Tag = mongoose.model('Tag');
 
-//Globals
-var user;
-var article;
-
 //The tests
 describe('<Unit Test>', function() {
   describe('Model Article:', function() {
-    beforeEach(function(done) {
+    before(function(done) {
       user = new User({
         name: 'Full name',
         email: 'test@test.com',
@@ -28,7 +24,8 @@ describe('<Unit Test>', function() {
           title: 'Article Title',
           content: 'Article Content',
           user: user,
-					tags: ['Tag1','Tag2']
+					tags: ['Tag1','Tag2'],
+					published: 1
         });
 
         done();
@@ -59,31 +56,22 @@ describe('<Unit Test>', function() {
 				});
 			});
 
-			//@TODO: find a way to test mapreduce for tags
-			// it('should add tags to tags collection', function(done) {
-			// 	this.timeout(10000);
-			// 	return setTimeout(function() {
-			// 		Article.find({},function(err,articles) {
-			// 			console.log(articles);
-			// 		});
-			// 		Tag.find({},function(err, tags) {
-			// 			should.not.exist(err);
-			// 			console.log(tags);
-			// 			should.exist(tags);
-			// 			tags.length.should.equal(2);
-			// 			done();
-			// 		});
-			// 	},9000)
-			// });
+			it('should add tags to tags collection', function(done) {
+				//Little timeout for mapreduce
+				setTimeout(function(){
+					Tag.find({},function(err, tags) {
+						should.not.exist(err);
+						should.exist(tags);
+						tags.length.should.equal(2);
+						done();
+					});
+				},50);
+			});
     });
 
-    afterEach(function(done) {
-      Article.remove({});
-      User.remove({});
-      done();
-    });
     after(function(done) {
       Article.remove().exec();
+			Tag.remove().exec();
       User.remove().exec();
       done();
     });
