@@ -2,7 +2,7 @@ angular.module('mean.articles').controller('ArticlesController', function ($scop
   $scope.global = Global;
 	$scope.user = Auth.getCurrentUser();
 	$scope.checkAccess = Auth.checkAccess;
-	$scope.article = {};
+	$scope.article = {created: (new Date).toISOString()};
 	
 	var path = $location.path();
 	if(path === "/" || $routeParams.tags || $routeParams.search)
@@ -52,12 +52,7 @@ angular.module('mean.articles').controller('ArticlesController', function ($scop
 	};
 
 	function createArticle() {
-    var article = new Articles({
-      title: $scope.article.title,
-			lead: $scope.article.lead,
-      content: $scope.article.content,
-			tags: $scope.article.tags
-    });
+    var article = new Articles($scope.article);
     article.$save(function(response) {
       $location.path("posts/" + response.slug);
     });
