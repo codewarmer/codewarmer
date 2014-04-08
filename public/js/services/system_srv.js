@@ -3,13 +3,13 @@ angular.module('mean.system').factory('Page', function($window, $location) {
 	var crawler = /PhantomJS/.test($window.navigator.userAgent);
 	return {
 		getTitle: function() {
-			return title || 'CodeWarmer - blog about software development and egeneering';
+			return title || 'CodeWarmer - blog about software development';
 		},
 		setTitle: function(newTitle) {
 			title = newTitle + ' | CodeWarmer';
 		},
 		getDescription: function() {
-			return description || 'This blog is mainly about the web programming and related topics with many examples';
+			return description || 'This blog is about software development and related topics';
 		},
 		setDescription: function(newDescription) {
 			description = newDescription;
