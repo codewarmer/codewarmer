@@ -15,7 +15,8 @@
     "angular-recaptcha": "latest",
     "ng-ckeditor": "latest",
     "google-code-prettify": "latest",
-    "angulartics": "~0.8.7"
+    "angulartics": "~0.8.7",
+    "zeroclipboard": "~1.3.5"
   },
   "resolutions": {
     "angular": "1.2.12"
