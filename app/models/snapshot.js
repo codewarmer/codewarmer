@@ -21,7 +21,7 @@ var scriptTagRegex = /<script\b[^<]*(?:(?!<\/script>)<[^<]*)*<\/script>/gi;
 
 var stripScriptTags = function(html) {
   return html.replace(scriptTagRegex,'');
-}
+};
 
 /**
  * Statics
