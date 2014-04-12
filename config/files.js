@@ -24,8 +24,10 @@ module.exports = {
 			'/js/rolesConfig.js',
 			'/js/app.js',
 			'/js/config.js',
-			'/js/directives.js',
 			'/js/filters.js',
+			
+			//Application Directives
+			'/js/directives/directives.js',
 
 			//Application Services
 			'/js/services/system_srv.js',
@@ -42,6 +44,8 @@ module.exports = {
 			'/js/controllers/header.js',
 			'/js/controllers/right_nav.js',
 			'/js/controllers/admin.js',
+			'/js/controllers/password_generator.js',
+			'/js/controllers/regexp_tool.js',
 			//'/js/init.js',
 
 			//Third party scripts
@@ -60,7 +64,8 @@ module.exports = {
 		prettifyToMinify: ['/lib/google-code-prettify/src/prettify.js',	'/lib/google-code-prettify/src/lang-css.js'],
 		prettify: ['/js/prettify.min.js'],
 		recaptcha: ['//www.google.com/recaptcha/api/js/recaptcha_ajax.js', '/lib/angular-recaptcha/release/angular-recaptcha.min.js'],
-		addthis: ['//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-5201de684b543d8f&async=1']
+		addthis: ['//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-5201de684b543d8f&async=1'],
+		zeroClipboard: ['/lib/zeroclipboard/ZeroClipboard.js']
 	},
 	//Minified production ready files
 	production: {
@@ -72,7 +77,8 @@ module.exports = {
 		ckeditor: ['/static_lib/ckeditor/ckeditor.js', '/lib/ng-ckeditor/ng-ckeditor.js'],
 		prettify: ['/js/prettify.min.js'],
 		recaptcha: ['//www.google.com/recaptcha/api/js/recaptcha_ajax.js', '/lib/angular-recaptcha/release/angular-recaptcha.min.js'],
-		addthis: ['//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-5201de684b543d8f&async=1']
+		addthis: ['//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-5201de684b543d8f&async=1'],
+		zeroClipboard: ['/lib/ZeroClipboard.min.js']
 	},
 	getPaths: function(type) {
 		return type ? this[process.env.NODE_ENV][type] : this[process.env.NODE_ENV];
