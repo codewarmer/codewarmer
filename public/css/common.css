@@ -77,10 +77,72 @@ footer p {
 		border-radius: 4px 0 0 4px;
 }
 
-.right-nav h3 {
-		border-bottom: 1px solid #D6C899/*#ccc*/;
+.right-nav h3, .static-page h2 {
+		border-bottom: 1px solid #D6C899;
 }
 
+.glyphicon.alpha {
+		opacity: .5;
+}
+
+.password-generator i.glyphicon {
+		font-size: 30px;
+}
+
+.password-generator .well {
+		font-size: 25px;
+		border-color: #D6C899;
+		background: #FFFDCF;
+		text-align: center;
+		margin-top: 10px;
+}
+
+.password-generator .buttons {
+		margin-bottom:10px;
+		text-align:center;
+}
+
+.password-generator .buttons .btn-primary,
+.regexp-tool .btn-primary {
+		color: #FFFDCF;
+		background-color: #776229;
+		border-color: #58481C;
+}
+
+.regexp-tool .btn-primary.active {
+		background-color: #B39645;
+}
+
+.password-generator .buttons .btn-primary:hover, .password-generator .buttons .btn-primary.zeroclipboard-is-hover,
+.regexp-tool .btn-primary:hover, .regexp-tool .btn-primary.zeroclipboard-is-hover {
+		background-color: #927C3E;
+}
+
+.regexp-tool .buttons, .regexp-tool .methods, .regexp-tool .input-group, .regexp-tool .matches {
+		margin-top:10px;
+}
+
+.regexp-tool .well {
+		margin-bottom: 10px;
+}
+
+.regexp-tool .input-group-addon {
+		color: #776229;
+		border-color: #DBA83C;
+		background-color: #FFFDCF;
+}
+.regexp-tool .input-group-addon.second{
+		border-left:none;
+}
+
+/* .regexp-tool .buttons { */
+/* 		text-align:center; */
+/* } */
+
+.regexp-tool .well .match {
+		color:red;
+		font-weight:bold;
+}
 
 /* Recoloring of Bootstrap */
 		
@@ -104,7 +166,7 @@ body {background: #F0E1C2;color: #776229;}
 .table > thead > tr > th {border-color: #DBA83C;}
 .table > thead > tr > th, .table > tbody > tr > th, .table > tfoot > tr > th, .table > thead > tr > td, .table > tbody > tr > td, .table > tfoot > tr > td {border-color: #DBA83C;}
 .alert-danger{border-color: #EB8495;}
-.thumbnail {background-color: #FFCC71; border-color: #DBA83C;}
+.thumbnail, .well {background-color: #FFCC71; border-color: #DBA83C;}
 .form-control {border-color: #DBA83C;}
 .cke_1.cke_chrome {border-color: #DBA83C !important;}
 
