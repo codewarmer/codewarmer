@@ -1,0 +1,60 @@
+<div class="col-sm-9 box-shadow static-page regexp-tool" ng-controller="regexpTool">
+	<h2>RegExp Tool</h2>
+	<label for="subject">Subject</label>
+	<textarea class="form-control" id="subject" placeholder="Enter Subject text for RegExp" ng-model="subject"></textarea>
+	<div class="methods">
+		<div class="btn-group">
+			<button class="btn btn-primary" ng-model="method" btn-radio="'test'">test</button>
+			<button class="btn btn-primary" ng-model="method" btn-radio="'exec'">exec</button>
+			<button class="btn btn-primary" ng-model="method" btn-radio="'replace'">replace</button>
+			<button class="btn btn-primary" ng-model="method" btn-radio="'match'">match</button>
+			<button class="btn btn-primary" ng-model="method" btn-radio="'search'">search</button>
+		</div>
+	</div>
+	<div class="input-group regexp">
+		<span class="input-group-addon">/</span>
+		<input type="text" class="form-control" placeholder="Pattern" ng-model="pattern" />
+		<span class="input-group-addon second">/</span>
+		<span class="input-group-btn">
+			<button type="button" class="btn btn-primary" ng-model="modifiers.i" btn-checkbox>i</button>
+			<button type="button" class="btn btn-primary" ng-model="modifiers.g" btn-checkbox>g</button>
+			<button type="button" class="btn btn-primary" ng-model="modifiers.m" btn-checkbox>m</button>
+		</span>
+	</div>
+	<div class="replace" ng-show="method=='replace'">
+		<label for="replace">Replace:</label>
+		<textarea class="form-control" id="replace" placeholder="Replace" ng-model="replace"></textarea>
+	</div>
+	<div class="buttons">
+		<div class="btn-group">
+			<button class="btn btn-primary" title="Run" ng-click="run()">
+				<span class="glyphicon glyphicon-play"></span>
+				<span class="hidden-xs">Run</span>
+			</button>
+			<button class="btn btn-primary" title="Clear" ng-click="clear()">
+				<span class="glyphicon glyphicon-unchecked"></span>
+				<span class="hidden-xs">Clear</span>
+			</button>
+			<button class="btn btn-primary" title="Copy RegExp" ng-zeroclip="regexpToCopy">
+				<span class="glyphicon glyphicon-arrow-right"></span>
+				<span class="glyphicon glyphicon-list-alt"></span>
+				<span class="hidden-xs">Copy RegExp</span>
+			</button>
+		</div>
+	</div>
+	<div class="matches" ng-hide="!matches">
+		<label>Matches:</label>
+		<div class="well" ng-bind-html="matches"></div>
+	</div>
+	<div class="result" ng-hide="result===''">
+		<label>Result:</label>
+		<div class="well" ng-bind="result"></div>
+		<button class="btn btn-primary" title="Copy result" ng-zeroclip="result">
+			<span class="glyphicon glyphicon-arrow-right"></span>
+			<span class="glyphicon glyphicon-list-alt"></span>
+			<span class="hidden-xs">Copy Result</span>
+		</button>
+	</div>
+</div>
+
+<div class="col-sm-3 hidden-xs" ng-include="'/views/right_nav.html'"></div>
