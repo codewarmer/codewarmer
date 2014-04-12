@@ -15,7 +15,10 @@ var dependencies = ['ngCookies',
 										'AutoFillSync', //provides sync for stored password and autofill
 										'Prettify', 
 										'TimeAgo', // Contains timeago filter
-										'AddThis'];
+										'passwordGenerator',
+										'ZeroClip',
+										'AddThis',
+										'RegexpTool'];
 var mean = angular.module('mean', dependencies);
 
 angular.module('mean.system', []);

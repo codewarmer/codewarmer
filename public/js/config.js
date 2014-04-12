@@ -40,6 +40,12 @@ angular.module('mean').config(function($routeProvider, $locationProvider, $httpP
       templateUrl: '/views/admin/adm_index.html',
 			access: 'admin'
     }).
+		when('/password-generator', {
+			templateUrl: '/views/static/password_generator.html'
+		}).
+		when('/regexp-tool', {
+			templateUrl: '/views/static/regexp_tool.html'
+		}).
     otherwise({
       redirectTo: '/'
     });
