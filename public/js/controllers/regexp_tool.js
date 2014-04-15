@@ -14,6 +14,9 @@ angular.module('RegexpTool', []).controller('regexpTool', function($scope) {
 		$scope.result = '';
 		$scope.replace = '';
 		$scope.matches = '';
+		$scope.error = '';
+		$scope.showReference = false;
+		$scope.showReferenceReplace = false;
 	};
 
 	setDefaults();
@@ -30,29 +33,41 @@ angular.module('RegexpTool', []).controller('regexpTool', function($scope) {
 		return string.replace(/[&<>]/ig, applyEscape);
 	};
 	
-	var escapePattern = function(string) {
-		return string.replace(/[\-\[\]\/\{\}\(\)\*\+\?\.\\\^\$\|]/g, '\\$&');
-	};
-
-	var createMatchesOutput = function(regexp, modifiers) {
-		var matches = $scope.subject.match(regexp);
-		var escapedString = escapeString($scope.subject);
-		if(matches)
-			matches.forEach(function(match) {
-				match = escapeString(match);
-				var matchRegexp = new RegExp('(?!<span class="match">])'+escapePattern(match), modifiers);
-				escapedString = escapedString.replace(matchRegexp, '<span class="match">' + match + '</span>');
-			});
-		$scope.matches = escapedString;
+	var createMatchesOutput = function(modifiers) {
+		var offset = 0;
+		var regexp = new RegExp('(.*?)'+$scope.pattern, modifiers);
+		var string = $scope.subject.replace(regexp, function(match, p1, p2) {
+			//get offset
+			offset = arguments[arguments.length-2] + match.length;
+			//escape original subject and insert match span
+			return escapeString(p1) + '<span class="match">'  + escapeString(match.replace(p1, '')) + '</span>';
+		});
+		if(offset < $scope.subject.length-1){
+			var nonEscaped = $scope.subject.slice(offset);
+			string = string.replace(nonEscaped, escapeString(nonEscaped));
+		}
+		$scope.matches = string;
 	};
 
 	var runRegexp = function() {
 		var modifiers = '';
+		$scope.error = '';
+		$scope.result = '';
+		$scope.matches = '';
 		for(var i in $scope.modifiers){
 			if(typeof $scope.modifiers[i] !== 'function')
 				modifiers += $scope.modifiers[i] ? i : '';
 		}
-		var regexp = new RegExp($scope.pattern, modifiers);
+
+		//catch err and output message for debugging
+		try {
+			var regexp = new RegExp($scope.pattern, modifiers);
+		}
+		catch(err){
+			$scope.error = err.message;
+		}
+
+		if($scope.error) return;
 
 		//switch between the methods of RegExp and String
 		switch($scope.method){
@@ -61,10 +76,14 @@ angular.module('RegexpTool', []).controller('regexpTool', function($scope) {
 			$scope.regexpToCopy = regexp + '.' + $scope.method + '(subject);';
 			$scope.result = regexp[$scope.method]($scope.subject);
 			break;
-		case 'replace':
 		case 'match':
 		case 'search':
+		case 'split':
 			$scope.regexpToCopy = 'subject.' + $scope.method + '(' + regexp + ');';
+			$scope.result = $scope.subject[$scope.method](regexp);
+			break;
+		case 'replace':
+			$scope.regexpToCopy = 'subject.' + $scope.method + '(' + regexp + ',' + $scope.replace  + ');';
 			$scope.result = $scope.subject[$scope.method](regexp, $scope.replace);
 			break;
 		}
@@ -74,14 +93,13 @@ angular.module('RegexpTool', []).controller('regexpTool', function($scope) {
 		//fic to display null
 		if($scope.result===null) $scope.result = 'null';
 		
-		//alter regexp if not replace or match and create Matches output
-		if($scope.method == 'replace' || $scope.method == 'match'){
-			createMatchesOutput(regexp, modifiers);
+		//remove global modifier if not replace, match or split
+		if($scope.method == 'replace' || $scope.method == 'match' || $scope.method == 'split'){
+			createMatchesOutput(modifiers);
 		}
 		else {
-			modifiers = modifiers.replace('g', '');
-			regexp = new RegExp($scope.pattern, modifiers);
-			createMatchesOutput(regexp);
+			modifiers = modifiers.replace('g','');
+			createMatchesOutput(modifiers);
 		}
 	};
 

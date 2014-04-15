@@ -118,11 +118,11 @@ footer p {
 		background-color: #927C3E;
 }
 
-.regexp-tool .buttons, .regexp-tool .methods, .regexp-tool .input-group, .regexp-tool .matches {
+.regexp-tool .buttons, .regexp-tool .methods, .regexp-tool .input-group, .regexp-tool .matches, .regexp-tool .alert, .regexp-tool .reference-block {
 		margin-top:10px;
 }
 
-.regexp-tool .well {
+.regexp-tool .well, .regexp-tool .alert {
 		margin-bottom: 10px;
 }
 
@@ -131,8 +131,19 @@ footer p {
 		border-color: #DBA83C;
 		background-color: #FFFDCF;
 }
+
+.regexp-tool code {
+		color: #FFFDCF;
+		background-color: #776229;
+}
+
 .regexp-tool .input-group-addon.second{
 		border-left:none;
+}
+
+.reverse-caret {
+		border-top: 0;
+		border-bottom: 4px solid;
 }
 
 /* .regexp-tool .buttons { */

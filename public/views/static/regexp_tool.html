@@ -9,8 +9,10 @@
 			<button class="btn btn-primary" ng-model="method" btn-radio="'replace'">replace</button>
 			<button class="btn btn-primary" ng-model="method" btn-radio="'match'">match</button>
 			<button class="btn btn-primary" ng-model="method" btn-radio="'search'">search</button>
+			<button class="btn btn-primary" ng-model="method" btn-radio="'split'">split</button>
 		</div>
 	</div>
+
 	<div class="input-group regexp">
 		<span class="input-group-addon">/</span>
 		<input type="text" class="form-control" placeholder="Pattern" ng-model="pattern" />
@@ -21,9 +23,22 @@
 			<button type="button" class="btn btn-primary" ng-model="modifiers.m" btn-checkbox>m</button>
 		</span>
 	</div>
+	<div class="alert alert-danger" ng-show="error" ng-bind="error"></div>
+	<div class="reference-block">
+		<a href="" rel="nofollow" ng-click="showReference = !showReference">
+			RegExp special characters <span class="caret" ng-class="{'reverse-caret': showReference}"></span>
+		</a>
+		<div ng-include="'/views/static/regexp_reference.html'" ng-show="showReference"></div>
+	</div>
 	<div class="replace" ng-show="method=='replace'">
 		<label for="replace">Replace:</label>
 		<textarea class="form-control" id="replace" placeholder="Replace" ng-model="replace"></textarea>
+		<div class="reference-block">
+			<a href="" rel="nofollow" ng-click="showReferenceReplace = !showReferenceReplace">
+				Special replacement characters <span class="caret" ng-class="{'reverse-caret': showReferenceReplace==true}"></span>
+			</a>
+			<div ng-include="'/views/static/regexp_reference_replace.html'" ng-show="showReferenceReplace"></div>
+		</div>
 	</div>
 	<div class="buttons">
 		<div class="btn-group">
