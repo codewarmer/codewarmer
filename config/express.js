@@ -11,6 +11,7 @@ var express = require('express'),
     path = require('path'),
     url = require('url'),
     mongoose = require('mongoose'),
+    querystring = require('querystring'),
     Snapshot = mongoose.model('Snapshot');
 
 module.exports = function(app, router, passport, db) {
@@ -75,6 +76,7 @@ module.exports = function(app, router, passport, db) {
 	//SEO for Angular.js
 	app.use(function(req,res,next) {
 		var fragment = req.query._escaped_fragment_;
+		var path = req.url;
 		var facebook =  /facebookexternalhit/.test(req.headers['user-agent']);
 		var google = /google\.com\/\+/.test(req.headers['user-agent']);
 		//Not a search bot
@@ -82,13 +84,13 @@ module.exports = function(app, router, passport, db) {
 			next();
 			return;
 		}
-
-		var path = req.url;
-		if(typeof fragment !== 'undefined')
-			path = fragment;
-
-		if(path.charAt(0) !== '/' || path === '')
-			path = '/' + path;
+		
+		//get real path if fragment presented
+		if(typeof fragment !== 'undefined'){
+			path = req.url.replace(/(.*)(&|\?)_escaped_fragment_=(.*)/ig, function(match, p1, p2, p3) {
+				return p1 + (p3 && '#!' + querystring.unescape(p3));
+			});
+		}
 
 		Snapshot.load(path, function(err, snapshot) {
 			if(err || !snapshot)
@@ -100,24 +102,16 @@ module.exports = function(app, router, passport, db) {
 	});
 	
 	app.use(function(req,res,next) {
-		//console.log(req.header('Referer'));
 		var referer = req.header('Referer');
 		if(referer && /\/auth\//.test(req.url) && !/\/(signup|signin)/.test(referer)){
 			req.session.redirect = url.parse(referer).path;
 			req.session.save();
 		}
-		//console.log('hehe');
 		next();
 	});
 
   //routes should be at the last
   app.use(router);
-
-	// app.use(function(req,res,next) {
-	// 	console.log('here we go');
-	// 	var index = require('../app/controllers/index');
-	// 	index.render(req,res);
-	// });
 
   //Assume "not found" in the error msgs is a 404. this is somewhat silly, but valid, you can do whatever you like, set properties, use instanceof etc.
   app.use(function(err, req, res, next) {
