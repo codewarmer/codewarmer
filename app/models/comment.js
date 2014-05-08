@@ -11,20 +11,24 @@ var mongoose = require('mongoose'), Schema = mongoose.Schema, base = require('ba
 var CommentSchema = new Schema({
 	discussion_id: {
 		type: Schema.ObjectId,
-		required: true
+		required: true,
+		index: true
 	},
 	parent_id: {
-		type: Schema.ObjectId
+		type: Schema.ObjectId,
+		index: true
 	},
 	replyTo: {
 		type: String
 	},
 	thread: {
-		type: String
+		type: String,
+		index: true
 	},
 	posted: {
 		type: Date,
-		default: Date.now
+		'default': Date.now,
+		index: true
 	},
 	author: {
 		type: Schema.ObjectId,
@@ -55,6 +59,22 @@ CommentSchema.pre('save',function(next) {
 	}
 });
 
+/**
+ * Statics
+ */
+
+CommentSchema.statics.getCommentById = function(id, cb) {
+	this.findOne({'_id': id}, '', {populate: 'author'}, cb);
+};
+
+CommentSchema.statics.getLastInThread = function(params, cb) {
+	this.findOne(params, 'thread', {sort: '-thread'}, cb);
+};
+
+CommentSchema.statics.getCommentsByDiscussionId = function(id, cb) {
+  this.find({discussion_id: id}).sort('-thread').populate('author', 'username').exec(cb);
+};
+
 mongoose.model('Comment', CommentSchema);
 
 /**
@@ -63,19 +83,20 @@ mongoose.model('Comment', CommentSchema);
 
 function buildCommentThread(comment, next) {
   var Comment = mongoose.model('Comment');
-	//console.log(comment);
-	//comment is reply
+	//the comment is reply
 	if(comment.parent_id){
-		//find parent comment in thread
-		Comment.findOne({'_id': comment.parent_id}, 'thread author', {populate: 'author'}, function(err, parentComment) {
-			//find last comment in thread
-			Comment.findOne({'parent_id': comment.parent_id}, 'thread', {sort: '-thread'}, function(err, lastInThread) {
+		//find the parent comment in the thread
+		Comment.getCommentById(comment.parent_id, function(err, parentComment) {
+			//find the last comment in the thread
+			Comment.getLastInThread({'parent_id': comment.parent_id}, function(err, lastInThread) {
 				comment.replyTo = parentComment.author.username;
+				//extract the current thread latest threadId
 				if(lastInThread){
 					var threadArr = lastInThread.thread.slice(0,-1).split('.');
 					var threadId = threadArr.pop();
 					comment.thread = threadArr.join('.') + '.' + createThreadId(threadId) + '/';
 				}
+				//the first comment in the discussion
 				else{
 					comment.thread = parentComment.thread.slice(0,-1) + '.' + createThreadId() + '/';
 				}
@@ -83,36 +104,37 @@ function buildCommentThread(comment, next) {
 			});
 		});
 	}
-	//comment is in the main tree
+	//the comment is in the main tree
 	else{
-		//get the last comment thread in disscussion
-		Comment.findOne({'discussion_id': comment.discussion_id}, 'thread', {sort: '-thread'}, function(err, last_comment) {
-			//console.log(last_comment);
+		//get the last comment thread in the disscussion
+		Comment.getLastInThread({'discussion_id': comment.discussion_id}, function(err, lastInThread) {
 			//not the first comment in discussion
-			if(last_comment && last_comment.thread){
-				//strip "/" from the end of the threadId and send to creator
-				comment.thread = createThreadId(last_comment.thread.slice(0,-1))+'/';
+			if(lastInThread && lastInThread.thread){
+				//strip "/" from the end of the threadId and send to the creator
+				comment.thread = createThreadId(lastInThread.thread.slice(0,-1))+'/';
 			}
-			//first comment in discussion
-			else
+			//the first comment in the discussion
+			else{
 				comment.thread = createThreadId()+'/';
-			//console.log(comment);
+			}
 			next();
 		});
 	}
 }
 
+
+
 function createThreadId(threadId) {
   threadId = threadId || '00';
-	//strip first char, convert the rest to decimal and increment by 1
+	//strip the first char, convert the rest to the decimal and increment by 1
 	var decimal = base._62ToDec(threadId.substr(1)) + 1;
-	//decimal to base62
+	//decimal to the base62
 	var base62 = base.decTo62(decimal);
-	//take a length of base62
+	//take a length of the base62
 	var len = base62.length;
 	//create code for the leading character of thread id
 	var chcode = len + "0".charCodeAt() - 1;
-	//concat leading character and base36 number
+	//concat leading character and base62 number
 	var str = String.fromCharCode(chcode)+''+base62;
 	return str;
 }

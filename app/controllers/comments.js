@@ -23,7 +23,7 @@ exports.all = function(req,res) {
 };
 
 exports.commentsByDiscussion = function(req,res) {
-  Comment.find({discussion_id: req.params.discussionId}).sort('-thread').populate('author', 'username').exec(function(err, comments) {
+  Comment.getCommentsByDiscussionId(req.params.discussionId, function(err, comments) {
 		if(err){
 			return res.send('500');
 		}
