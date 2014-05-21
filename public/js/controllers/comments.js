@@ -4,12 +4,13 @@ angular.module('mean.comments').controller('CommentsController', function($scope
 	// $scope.user = Auth.getCurrentUser();
 	$scope.comment = {};
 	$scope.comments = {};
+	$scope.showCommentForm = false;
 
 	$scope.$watch('article', function(value) {
 		if(value._id)
 			getComments();
 	});
-	
+
 	function getComments() {
 		$http.get('/comments/discussion/'+$scope.article._id).
 					success(function(comments) {
@@ -26,9 +27,10 @@ angular.module('mean.comments').controller('CommentsController', function($scope
 		comment.$save(function(response) {
 			getComments();
 			$scope.comment.text = '';
+			$scope.showCommentForm = false;
 		});
 	};
-	
+
 	var currentReplyIndex = null;
 
 	$scope.closeReply = function(index) {
