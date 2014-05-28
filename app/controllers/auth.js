@@ -1,24 +1,16 @@
-var passport = require('passport'), 
-    mongoose = require('mongoose'), 
-    User = mongoose.model('User'), 
-    config = require('../../config/config'),
+var passport = require('passport'),
+    mongoose = require('mongoose'),
+    User = mongoose.model('User'),
     rolesConfig = require('../../public/js/rolesConfig'),
-    Recaptcha = require('recaptcha').Recaptcha;
+    recaptcha = require('../../utils/recaptcha');
 
 module.exports = {
 	create: function(req, res, next) {
-		var data = {
-			remoteip: req.connection.remoteAddress,
-			challenge: req.body.recaptcha.challenge,
-			response: req.body.recaptcha.response
-		};
 
-		var recaptcha = new Recaptcha(config.recaptcha.public_key, config.recaptcha.private_key, data);
-		
-		recaptcha.verify(function(success, error_code) {
+		recaptcha.verify(req, function(success, errmsg) {
 			var errors = [];
 			if(!success){
-				errors.push({path: 'recaptcha', message: msgFromError(error_code)});
+				errors.push({path: 'recaptcha', message: errmsg});
 				return res.send(400, {errors: errors});
 			}
 			var user = new User(req.body);
@@ -33,12 +25,12 @@ module.exports = {
 					case 11001:
 						errors.push({path:'name',message:'Username already exists'});
 					}
-					
+
 					for(var i in err.errors){
 						if(err.errors.hasOwnProperty(i))
 							errors.push(err.errors[i]);
 					}
-					
+
 					return res.send(400, {errors: errors});
 				}
 				//User saved, attempt to login
@@ -57,7 +49,7 @@ module.exports = {
 			//console.log('pass auth', err, user, '\n');
 			if(err) return next(err);
 			if(!user) return res.send(400, info);
-			
+
 			req.logIn(user, function(err) {
 				if(err) return next(err);
 				user.hashed_password = undefined;
@@ -66,7 +58,7 @@ module.exports = {
 			});
 		})(req, res, next);
 	},
-	
+
 	logout: function(req,res) {
 		req.logout();
 		res.send(200);
@@ -84,14 +76,5 @@ module.exports = {
 	hasAccess: function(access, req) {
 		return req.user && rolesConfig.access[access].indexOf(req.user.role)!==-1;
 	}
-		
+
 };
-
-
-function msgFromError(err_code) {
-  switch(err_code){
-		case 'incorrect-captcha-sol': return 'The CAPTCHA solution was incorrect.';
-		case 'incorrect-captcha-sol': return 'The solution was received after the CAPTCHA time out.';
-		default: return 'CAPTCHA error, please try again.';
-	}
-}
