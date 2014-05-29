@@ -1,4 +1,4 @@
-angular.module('mean.users').controller('UsersController', function($scope, $routeParams, $location, $rootScope, $http, Global, Auth, Loader, Page) {
+angular.module('mean.users').controller('UsersController', function($scope, $location, Global, Auth, Loader, Page) {
   $scope.global = Global;
 	$scope.crawler = Page.isCrawler();
 	$scope.user = {};
@@ -31,9 +31,4 @@ angular.module('mean.users').controller('UsersController', function($scope, $rou
 			}
 		});
 	};
-});
-
-angular.module('mean.users').controller('RecaptchaCtrl', function($scope, vcRecaptchaService) {
-	//make vcRecaptchaService available for parent scope
-	$scope.$parent.vcRecaptcha.service = vcRecaptchaService;
 });
