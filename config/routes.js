@@ -85,7 +85,7 @@ module.exports = function(router, passport) {
 
   //Finish with setting up the Slug param
   router.param('slug', articles.article);
-	
+
 	//Comment routes
 	var comments = require('../app/controllers/comments');
 	router.route('/comments')
@@ -124,6 +124,12 @@ module.exports = function(router, passport) {
 		.delete(admin.deleteSnapshot);
 
 	router.param('snapshotId', admin.getSnapshot);
+
+  //Contact
+  var contact = require('../app/controllers/contact');
+
+  router.route('/contact')
+    .post(contact.create);
 
   //Return angular.js app index page
   var index = require('../app/controllers/index');
