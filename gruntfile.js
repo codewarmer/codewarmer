@@ -1,4 +1,5 @@
-var toMinify = require('./config/files');
+var toMinify = require('./config/files'),
+env = require('node-env-file');
 
 module.exports = function(grunt) {
   // Project Configuration
@@ -32,23 +33,29 @@ module.exports = function(grunt) {
       }
     },
     jshint: {
-      all: ['gruntfile.js', 'public/js/**/*.js', 'test/mocha/**/*.js', 'test/karma/**/*.js', 'app/**/*.js', '!public/js/all*.js', '!public/css/all*.css', '!public/js/prettify.min.js', '!public/js/analytics.js']
+      all: [
+      'gruntfile.js',
+      'public/js/**/*.js',
+      'test/mocha/**/*.js',
+      'app/**/*.js',
+      '!public/js/all*.js',
+      '!public/css/all*.css',
+      '!public/js/prettify.min.js',
+      '!public/js/analytics.js'
+      ]
     },
     nodemon: {
       dev: {
 				script: 'server.js',
         options: {
 					nodeArgs: ['--debug'],
-          file: 'server.js',
           args: [],
           ignore: ['README.md', 'node_modules/**', '.DS_Store'],
           ext: 'js',
           watch: ['app', 'config'],
           debug: true,
           delayTime: 1,
-          env: {
-            PORT: 3000
-          },
+          env: env('.envDev'),
           cwd: __dirname
         }
       }
@@ -68,7 +75,7 @@ module.exports = function(grunt) {
 		concat: {
 			css: {
 				src: toMinify.relativePaths('css'),
-				dest: './public/css/all.css'				
+				dest: './public/css/all.css'
 			},
 		},
 		uglify: {
@@ -80,7 +87,7 @@ module.exports = function(grunt) {
 				files: {
 					'./public/js/all.min.js': ['<%= ngmin.js.dest %>']
 				}
-			}			
+			}
 		},
 		cssmin: {
 			options: {
@@ -124,19 +131,13 @@ module.exports = function(grunt) {
       test: {
         NODE_ENV: 'test'
       }
-    },
-    karma: {
-      unit: {
-        configFile: 'test/karma/karma.conf.js'
-      }
     }
   });
 
-  //Load NPM tasks 
+  //Load NPM tasks
   grunt.loadNpmTasks('grunt-contrib-watch');
   grunt.loadNpmTasks('grunt-contrib-jshint');
   grunt.loadNpmTasks('grunt-mocha-test');
-  grunt.loadNpmTasks('grunt-karma');
   grunt.loadNpmTasks('grunt-nodemon');
   grunt.loadNpmTasks('grunt-concurrent');
   grunt.loadNpmTasks('grunt-env');
@@ -153,8 +154,8 @@ module.exports = function(grunt) {
   grunt.registerTask('default', ['jshint', 'concurrent']);
 
   //Test task.
-  grunt.registerTask('test', ['env:test', 'mochaTest', 'karma:unit']);
-	
+	grunt.registerTask('test', ['env:test', 'mochaTest']);
+
 	//Minify task
 	grunt.registerTask('minify', ['ngmin', 'concat', 'closure-compiler', 'cssmin']);
 };
