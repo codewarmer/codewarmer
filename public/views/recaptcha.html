@@ -1,0 +1,32 @@
+<div id="recaptcha_widget" ng-controller="RecaptchaCtrl" vc-recaptcha theme="custom" key="'6LcIsu0SAAAAAInHdlg3iuysUOOESy9ioWqDM9iD'">
+  <div class="form-group">
+    <label for="recaptcha" class="control-label">reCAPTCHA</label>
+    <div class="">
+
+      <div class="controls">
+        <a id="recaptcha_image" href="#" class="thumbnail"></a>
+        <div class="recaptcha_only_if_incorrect_sol" style="color:red">Incorrect please try again</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label class="recaptcha_only_if_image control-label">Enter the words above:</label>
+    <label class="recaptcha_only_if_audio control-label">Enter the numbers you hear:</label>
+
+    <div class="">
+      <div class="controls">
+        <div class="input-group">
+          <input type="text" id="recaptcha_response_field" name="recaptcha_response_field" class="input-recaptcha form-control" required>
+          <span class="input-group-btn">
+            <a class="btn btn-primary" href="javascript:Recaptcha.reload()"><span class="glyphicon glyphicon-refresh"></span></a>
+            <a class="btn btn-primary recaptcha_only_if_image" href="javascript:Recaptcha.switch_type('audio')"><span title="Get an audio CAPTCHA" class="glyphicon glyphicon-headphones"></span></a>
+            <a class="btn btn-primary recaptcha_only_if_audio" href="javascript:Recaptcha.switch_type('image')"><span title="Get an image CAPTCHA" class="glyphicon glyphicon-picture"></span></a>
+            <a class="btn btn-primary" href="javascript:Recaptcha.showhelp()"><span class="glyphicon glyphicon-question-sign"></span></a>
+          </span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
