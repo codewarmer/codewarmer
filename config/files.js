@@ -13,7 +13,7 @@ module.exports = {
 
 
 			//Recaptcha
-			
+
 
 			//Angular UI
 			'/lib/angular-bootstrap/ui-bootstrap.min.js',
@@ -25,7 +25,7 @@ module.exports = {
 			'/js/app.js',
 			'/js/config.js',
 			'/js/filters.js',
-			
+
 			//Application Directives
 			'/js/directives/directives.js',
 
@@ -46,6 +46,7 @@ module.exports = {
 			'/js/controllers/admin.js',
 			'/js/controllers/password_generator.js',
 			'/js/controllers/regexp_tool.js',
+			'/js/controllers/contact.js',
 			//'/js/init.js',
 
 			//Third party scripts
@@ -56,7 +57,7 @@ module.exports = {
 			'/lib/google-code-prettify/src/prettify.css',
 			'/css/prettify_solarized.css',
 			'/css/common.css',
-			
+
 			'/css/views/articles.css',
 			'/css/animation.css',
 		],
