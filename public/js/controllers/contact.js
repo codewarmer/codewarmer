@@ -20,5 +20,5 @@ angular.module('mean.contact').controller('contactCtrl', function ($scope, $http
         $scope.vcRecaptcha.service.reload();
       }
     });
-  }
+  };
 });
