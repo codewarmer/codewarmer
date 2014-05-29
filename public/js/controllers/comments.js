@@ -1,7 +1,4 @@
 angular.module('mean.comments').controller('CommentsController', function($scope,$http,Auth,Global,Comments, $animate) {
-	// console.log($scope);
-  // $scope.checkAccess = Auth.checkAccess;
-	// $scope.user = Auth.getCurrentUser();
 	$scope.comment = {};
 	$scope.comments = {};
 	$scope.showCommentForm = false;
