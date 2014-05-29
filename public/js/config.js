@@ -46,6 +46,12 @@ angular.module('mean').config(function($routeProvider, $locationProvider, $httpP
 		when('/regexp-tool', {
 			templateUrl: '/views/static/regexp_tool.html'
 		}).
+		when('/about', {
+			templateUrl: '/views/static/about.html',
+      resolve: {
+        'load': ['$q','$rootScope', 'Loader', loadDependency('recaptcha', {sync: true, ensure: 'Recaptcha'})]
+      }
+		}).
     otherwise({
       redirectTo: '/'
     });
@@ -76,7 +82,7 @@ angular.module('mean').config(function($routeProvider, $locationProvider, $httpP
 	}
 
 	function safeApply(scope, fn){
-		if(scope.$$phase || scope.$root.$$phase) 
+		if(scope.$$phase || scope.$root.$$phase)
 			fn();
 		else
 			scope.$apply(fn);
@@ -102,10 +108,10 @@ angular.module('mean').config(function($routeProvider, $controllerProvider, $com
 	// angular.module.filter = $filterProvider;
 	// angular.module.provide = $provide;
   window.meanProviders = {
-		'$routeProvider':	$routeProvider, 
-		'$controllerProvider': $controllerProvider, 
-		'$compileProvider': $compileProvider, 
-		'$filterProvider': $filterProvider, 
+		'$routeProvider':	$routeProvider,
+		'$controllerProvider': $controllerProvider,
+		'$compileProvider': $compileProvider,
+		'$filterProvider': $filterProvider,
 		'$provide': $provide
 	};
 });

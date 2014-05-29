@@ -5,6 +5,11 @@ angular.module('mean.system').controller('HeaderController', function ($scope, G
 	$scope.signOut = Auth.signOut;
 
   $scope.menu = [
+    {
+      "title": "About",
+      "link": "/about",
+      "access": true,
+    },
 		{
       "title": "Create New Article",
       "link": "/posts/create",
@@ -14,10 +19,11 @@ angular.module('mean.system').controller('HeaderController', function ($scope, G
 			"title": "Admin section",
       "link": "/admin",
 			"access": roleAccess('admin'),
-		}];
+		}
+  ];
   $scope.isCollapsed = false;
 	$scope.width = $window.innerWidth;
-	
+
 	function roleAccess(role) {
 		return function() {
 			return Auth.checkAccess(role);

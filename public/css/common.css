@@ -141,6 +141,10 @@ footer p {
 		border-left:none;
 }
 
+.about #recaptcha_widget {
+  width: 300px;
+}
+
 .reverse-caret {
 		border-top: 0;
 		border-bottom: 4px solid;
@@ -156,14 +160,15 @@ footer p {
 }
 
 /* Recoloring of Bootstrap */
-		
+
 body {background: #F0E1C2;color: #776229;}
 .navbar-inverse{background-color: #FFCC71;border-color: #DBA83C;}
 .navbar-inverse .navbar-brand {color: #AF8517;}
 .navbar-inverse .navbar-nav > li > a {color: #AF8517;}
 .navbar-inverse .navbar-toggle .icon-bar {background-color: #AF8517;}
 .navbar-inverse .navbar-toggle {border-color: #AF8517;}
-.navbar-inverse .navbar-toggle:hover, .navbar-inverse .navbar-toggle:focus {background: #FFFDCF;}
+.navbar-inverse .navbar-nav>.active>a, .navbar-inverse .navbar-nav>.active>a:hover, .navbar-inverse .navbar-nav>.active>a:focus
+.navbar-inverse .navbar-toggle:hover, .navbar-inverse .navbar-toggle:focus {background: #CFA464;}
 .navbar-inverse .navbar-nav > li > a:hover, .navbar-inverse .navbar-nav > li > a:focus  {background: #CFA464;}
 .navbar-inverse .navbar-nav > .open > a:hover, .navbar-inverse .navbar-nav > .open > a:focus, .navbar-inverse .navbar-nav > .open > a {
 		background: #CFA464;

@@ -1,0 +1,83 @@
+<div class="col-sm-9 box-shadow static-page about">
+	<h2>About</h2>
+	<p>
+		Hello there! My name is Victor and I’m a passionate software developer
+		with more than 8 years of experience. I'm a bit geeky about all the new
+		technologies and gadgets. I like the outdoor activities as well,
+		and wear a proud name of an amateur snowboarder and cyclist, heh.
+	</p>
+	<p>
+		My passion about the technologies started when I was just 9 years old and
+		had x486 packed with MS DOS, Norton Commander and Turbo Pascal.
+		This passion brought me to the depths of studying the Computer Science.
+		That’s how I stepped on the hard and interesting path of exploring
+		the programming.
+	</p>
+	<p>
+		Despite all the knowledge and experience I obtained within the years,
+		I still love to learn and search for something new and exciting.
+		And now I’d like to share some knowledge with you, guys. Hope, it
+		will be fascinating.
+	</p>
+	<p>
+		If you’re interested in some specific subjects, please go ahead and ask
+		in the contact form below. Will be glad to help.
+	</p>
+	<div ng-controller="contactCtrl">
+		<h2>Contact</h2>
+		<div ng-show="showAlerts">
+			<div ng-class="alertClass" class="fade in alert">
+				<button type="button" class="close" ng-click="showAlerts = false">×</button>
+				<ul class="list-unstyled">
+					<li ng-repeat="alert in alerts">
+						<strong ng-bind="alert.message"></strong>
+					</li>
+				</ul>
+			</div>
+		</div>
+		<form action="" method="post" ng-submit="send()">
+			<div class="form-group">
+				<input type="text" class="form-control" placeholder="Subject" ng-model="msg.subject" required>
+			</div>
+			<div class="form-group">
+				<textarea class="form-control" rows="10" placeholder="Message" ng-model="msg.text" required>
+				</textarea>
+			</div>
+			<div id="recaptcha_widget" ng-if="!crawler" ng-controller="RecaptchaCtrl" vc-recaptcha theme="custom" key="6LcIsu0SAAAAAInHdlg3iuysUOOESy9ioWqDM9iD">
+				<div class="form-group">
+					<label for="recaptcha" class="control-label">reCAPTCHA</label>
+					<div class="">
+
+						<div class="controls">
+							<a id="recaptcha_image" href="#" class="thumbnail"></a>
+							<div class="recaptcha_only_if_incorrect_sol" style="color:red">Incorrect please try again</div>
+						</div>
+					</div>
+				</div>
+
+				<div class="form-group">
+					<label class="recaptcha_only_if_image control-label">Enter the words above:</label>
+					<label class="recaptcha_only_if_audio control-label">Enter the numbers you hear:</label>
+
+					<div class="">
+						<div class="controls">
+							<div class="input-group">
+								<input type="text" id="recaptcha_response_field" name="recaptcha_response_field" class="input-recaptcha form-control" required>
+								<span class="input-group-btn">
+									<a class="btn btn-primary" href="javascript:Recaptcha.reload()"><span class="glyphicon glyphicon-refresh"></span></a>
+									<a class="btn btn-primary recaptcha_only_if_image" href="javascript:Recaptcha.switch_type('audio')"><span title="Get an audio CAPTCHA" class="glyphicon glyphicon-headphones"></span></a>
+									<a class="btn btn-primary recaptcha_only_if_audio" href="javascript:Recaptcha.switch_type('image')"><span title="Get an image CAPTCHA" class="glyphicon glyphicon-picture"></span></a>
+									<a class="btn btn-primary" href="javascript:Recaptcha.showhelp()"><span class="glyphicon glyphicon-question-sign"></span></a>
+								</span>
+							</div>
+						</div>
+					</div>
+
+				</div>
+			</div>
+			<input type="submit" class="btn btn-success" value="Send message">
+		</form>
+	</div>
+</div>
+
+<div class="col-sm-3 hidden-xs" ng-include="'/views/right_nav.html'"></div>

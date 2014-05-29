@@ -12,6 +12,7 @@ var dependencies = ['ngCookies',
 										'mean.auth',
 										'mean.comments',
 										'mean.admin',
+										'mean.contact',
 										'mean.filters',
 										'AutoFillSync', //provides sync for stored password and autofill
 										'Prettify',
@@ -27,3 +28,10 @@ angular.module('mean.users', []);
 angular.module('mean.auth', []);
 angular.module('mean.comments', ['ngAnimate']);
 angular.module('mean.admin', []);
+angular.module('mean.contact', []);
+
+//TODO if there will be more than one global controller move them to controllers.js 
+angular.module('mean').controller('RecaptchaCtrl', function($scope, vcRecaptchaService) {
+	//make vcRecaptchaService available for parent scope
+	$scope.$parent.vcRecaptcha.service = vcRecaptchaService;
+});
