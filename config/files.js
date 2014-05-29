@@ -79,7 +79,7 @@ module.exports = {
 		prettify: ['/js/prettify.min.js'],
 		recaptcha: ['//www.google.com/recaptcha/api/js/recaptcha_ajax.js', '/lib/angular-recaptcha/release/angular-recaptcha.min.js'],
 		addthis: ['//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-5201de684b543d8f&async=1'],
-		zeroClipboard: ['/lib/ZeroClipboard.min.js']
+		zeroClipboard: ['/lib/zeroclipboard/ZeroClipboard.min.js']
 	},
 	getPaths: function(type) {
 		return type ? this[process.env.NODE_ENV][type] : this[process.env.NODE_ENV];
