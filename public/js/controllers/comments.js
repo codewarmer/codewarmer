@@ -1,4 +1,4 @@
-angular.module('mean.comments').controller('CommentsController', function($scope,$http,Auth,Global,Comments, $animate) {
+angular.module('mean.comments').controller('CommentsController', function($scope,$http,Auth,Comments,$animate) {
 	$scope.comment = {};
 	$scope.comments = {};
 	$scope.showCommentForm = false;

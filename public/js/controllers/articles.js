@@ -1,9 +1,8 @@
-angular.module('mean.articles').controller('ArticlesController', function ($scope, $routeParams, $location, $rootScope, $element, Global, Articles, Auth, Page) {
-  $scope.global = Global;
+angular.module('mean.articles').controller('ArticlesController', function ($scope, $routeParams, $location, $rootScope, $element, Articles, Auth, Page) {
 	$scope.user = Auth.getCurrentUser();
 	$scope.checkAccess = Auth.checkAccess;
 	$scope.article = {created: (new Date()).toISOString()};
-	
+
 	var path = $location.path();
 	if(path === "/" || $routeParams.tags || $routeParams.search)
 		getArticles();
@@ -57,7 +56,7 @@ angular.module('mean.articles').controller('ArticlesController', function ($scop
       $location.path("posts/" + response.slug);
     });
   }
-	
+
 	function updateArticle() {
     var article = $scope.article;
     if (!article.updated) {
@@ -72,7 +71,7 @@ angular.module('mean.articles').controller('ArticlesController', function ($scop
 
   $scope.remove = function(article) {
     if (article) {
-      article.$remove();  
+      article.$remove();
 
       for (var i in $scope.articles) {
         if ($scope.articles[i] == article) {

@@ -11,10 +11,6 @@ module.exports = {
 			'/lib/angulartics/dist/angulartics.min.js',
 			'/lib/angulartics/dist/angulartics-google-analytics.min.js',
 
-
-			//Recaptcha
-
-
 			//Angular UI
 			'/lib/angular-bootstrap/ui-bootstrap.min.js',
 			'/lib/angular-bootstrap/ui-bootstrap-tpls.min.js',
@@ -31,7 +27,6 @@ module.exports = {
 
 			//Application Services
 			'/js/services/system_srv.js',
-			'/js/services/global.js',
 			'/js/services/articles.js',
 			'/js/services/comments.js',
 			'/js/services/auth.js',
@@ -40,14 +35,12 @@ module.exports = {
 			'/js/controllers/articles.js',
 			'/js/controllers/comments.js',
 			'/js/controllers/users.js',
-			'/js/controllers/index.js',
 			'/js/controllers/header.js',
 			'/js/controllers/right_nav.js',
 			'/js/controllers/admin.js',
 			'/js/controllers/password_generator.js',
 			'/js/controllers/regexp_tool.js',
 			'/js/controllers/contact.js',
-			//'/js/init.js',
 
 			//Third party scripts
 			'/js/analytics.js'
@@ -61,7 +54,7 @@ module.exports = {
 			'/css/views/articles.css',
 			'/css/animation.css',
 		],
-		ckeditor: ['/static_lib/ckeditor/ckeditor.js', '/lib/ng-ckeditor/ng-ckeditor.src.js'],
+		ckeditor: ['/static_lib/ckeditor/ckeditor.js', '/lib/ng-ckeditor/ng-ckeditor.js'],
 		prettifyToMinify: ['/lib/google-code-prettify/src/prettify.js',	'/lib/google-code-prettify/src/lang-css.js'],
 		prettify: ['/js/prettify.min.js'],
 		recaptcha: ['//www.google.com/recaptcha/api/js/recaptcha_ajax.js', '/lib/angular-recaptcha/release/angular-recaptcha.min.js'],

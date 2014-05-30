@@ -1,5 +1,4 @@
-angular.module('mean.users').controller('UsersController', function($scope, $location, Global, Auth, Loader, Page) {
-  $scope.global = Global;
+angular.module('mean.users').controller('UsersController', function($scope,$location,Auth,Loader,Page) {
 	$scope.crawler = Page.isCrawler();
 	$scope.user = {};
 	$scope.vcRecaptcha = {};

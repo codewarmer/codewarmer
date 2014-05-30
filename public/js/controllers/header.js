@@ -1,5 +1,4 @@
-angular.module('mean.system').controller('HeaderController', function ($scope, Global, $window, Auth) {
-  $scope.global = Global;
+angular.module('mean.system').controller('HeaderController', function ($scope,$window,Auth) {
 	$scope.user = Auth.getCurrentUser();
 	$scope.isLoggedIn = Auth.isLoggedIn;
 	$scope.signOut = Auth.signOut;
