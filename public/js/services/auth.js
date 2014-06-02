@@ -4,10 +4,6 @@ angular.module('mean.auth').factory('Auth',function($http, $cookieStore, $window
 	var rolesConfig = $window.rolesConfig;
 	if($window.user)
 		angular.copy($window.user, currentUser);
-	else
-		$http.get('/users/me').success(function(user) {
-			angular.copy(user, currentUser);
-		});
 
 	return {
 		//create user

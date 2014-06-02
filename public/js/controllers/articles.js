@@ -1,17 +1,9 @@
-angular.module('mean.articles').controller('ArticlesController', function ($scope, $routeParams, $location, $rootScope, $element, Articles, Auth, Page) {
+angular.module('mean.articles').controller('ArticlesController', function ($scope, $routeParams, $location, $rootScope, Articles, Auth, Page) {
 	$scope.user = Auth.getCurrentUser();
 	$scope.checkAccess = Auth.checkAccess;
 	$scope.article = {created: (new Date()).toISOString()};
 
 	var path = $location.path();
-	if(path === "/" || $routeParams.tags || $routeParams.search)
-		getArticles();
-	else if($routeParams.slug) {
-		findOne();
-		$scope.operation = "Edit Article";
-	}
-	else if(path === "/articles/create")
-		$scope.operation = "Create Article";
 
 	$scope.ckeditorConfig = {
 		lang: 'en',
@@ -53,7 +45,7 @@ angular.module('mean.articles').controller('ArticlesController', function ($scop
 	function createArticle() {
     var article = new Articles($scope.article);
     article.$save(function(response) {
-      $location.path("posts/" + response.slug);
+      $location.path('/posts/' + response.slug);
     });
   }
 
@@ -85,7 +77,7 @@ angular.module('mean.articles').controller('ArticlesController', function ($scop
     }
   };
 
-  function getArticles() {
+  $scope.getArticles = function() {
 		if($routeParams.tags || $routeParams.search){
 			Page.setDefault();
 			Articles.query(
@@ -100,6 +92,14 @@ angular.module('mean.articles').controller('ArticlesController', function ($scop
 				$scope.articles = articles;
 			});
 		}
-  }
+  };
 
+  if($routeParams.slug) {
+    findOne();
+    $scope.operation = "Edit Article";
+  }
+  else if(path === "/articles/create")
+    $scope.operation = "Create Article";
+  else if(path === "/" || $routeParams.tags || $routeParams.search)
+    $scope.getArticles();
 });
