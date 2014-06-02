@@ -19,9 +19,9 @@
                 });
             }));
 
-            it('should expose some global scope', function() {
+            it('should expose Auth methods', function() {
 
-                expect(scope.global).toBeTruthy();
+                expect(scope.isLoggedIn).toBeTruthy();
 
             });
 

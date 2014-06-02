@@ -1,5 +1,10 @@
 // Karma configuration
-// Generated on Sat Oct 05 2013 22:00:14 GMT+0700 (ICT)
+
+var files = require('../../config/files'),
+karmaFiles = files.relativePaths('js');
+
+karmaFiles.push('public/lib/angular-mocks/angular-mocks.js');
+karmaFiles.push('test/karma/unit/**/*.js');
 
 module.exports = function(config) {
     config.set({
@@ -11,30 +16,8 @@ module.exports = function(config) {
         // frameworks to use
         frameworks: ['jasmine'],
 
-
-        // list of files / patterns to load in the browser
-        files: [
-            'public/lib/angular/angular.js',
-            'public/lib/angular-mocks/angular-mocks.js',
-            'public/lib/angular-cookies/angular-cookies.js',
-            'public/lib/angular-resource/angular-resource.js',
-            'public/lib/angular-route/angular-route.js',
-            'public/lib/angular-bootstrap/ui-bootstrap-tpls.js',
-            'public/lib/angular-bootstrap/ui-bootstrap.js',
-            'public/lib/angular-ui-utils/modules/route/route.js',
-            'public/js/app.js',
-            'public/js/config.js',
-            'public/js/directives.js',
-            'public/js/filters.js',
-            'public/js/services/global.js',
-            'public/js/services/articles.js',
-            'public/js/controllers/articles.js',
-            'public/js/controllers/index.js',
-            'public/js/controllers/header.js',
-            'public/js/init.js',
-            'test/karma/unit/**/*.js'
-        ],
-
+        // all main files to use (exept dynamic libraries)
+        files: karmaFiles,
 
         // list of files to exclude
         exclude: [
@@ -53,7 +36,9 @@ module.exports = function(config) {
             // do not include tests or libraries
             // (these files will be instrumented by Istanbul)
             'public/js/controllers/*.js': ['coverage'],
-            'public/js/services/*.js': ['coverage']
+            'public/js/services/*.js': ['coverage'],
+            'public/js/directives/*.js': ['coverage'],
+            'public/js/filters.js': ['coverage']
         },
 
         coverageReporter: {
