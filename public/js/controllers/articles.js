@@ -74,6 +74,7 @@ angular.module('mean.articles').controller('ArticlesController', function ($scop
     else {
       $scope.article.$remove();
       $location.path('/');
+      $scope.article = {};
     }
   };
 
