@@ -1,32 +1,34 @@
 (function() {
-    'use strict';
+  'use strict';
 
-    describe('MEAN controllers', function() {
+  describe('MEAN controllers', function() {
 
-        describe('HeaderController', function() {
+    describe('HeaderController', function() {
 
-            // Load the controllers module
-            beforeEach(module('mean'));
+      // Load the controllers module
+      beforeEach(module('mean'));
 
-            var scope,
-                HeaderController;
+      var $rootScope,
+      initHeaderController;
 
-            beforeEach(inject(function($controller, $rootScope) {
-                scope = $rootScope.$new();
+      beforeEach(inject(function($injector) {
+        $rootScope = $injector.get('$rootScope');
+        var $controller = $injector.get('$controller');
+        
+        initHeaderController = function () {
+          return $controller('HeaderController', {$scope: $rootScope});
+        }
+      }));
 
-                HeaderController = $controller('HeaderController', {
-                    $scope: scope
-                });
-            }));
-
-            it('should expose Auth methods', function() {
-
-                expect(scope.isLoggedIn).toBeTruthy();
-
-            });
-
-        });
+      it('should expose Auth methods', function() {
+        initHeaderController();
+        expect($rootScope.user).toBeDefined();
+        expect($rootScope.isLoggedIn).toBeDefined();
+        expect($rootScope.signOut).toBeDefined();
+      });
 
     });
+
+  });
 
 })();
