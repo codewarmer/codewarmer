@@ -3,6 +3,12 @@ angular.module('mean.system').controller('HeaderController', function ($scope,$w
 	$scope.isLoggedIn = Auth.isLoggedIn;
 	$scope.signOut = Auth.signOut;
 
+  $scope.roleAccess = function(role) {
+    return function() {
+      return Auth.checkAccess(role);
+    };
+  };
+
   $scope.menu = [
     {
       "title": "About",
@@ -12,22 +18,16 @@ angular.module('mean.system').controller('HeaderController', function ($scope,$w
 		{
       "title": "Create New Article",
       "link": "/posts/create",
-			"access": roleAccess('admin'),
+			"access": $scope.roleAccess('admin'),
     },
 		{
 			"title": "Admin section",
       "link": "/admin",
-			"access": roleAccess('admin'),
+			"access": $scope.roleAccess('admin'),
 		}
   ];
   $scope.isCollapsed = false;
 	$scope.width = $window.innerWidth;
-
-	function roleAccess(role) {
-		return function() {
-			return Auth.checkAccess(role);
-		};
-	}
 
 	$scope.toggleCollapsed = function(){
 		$scope.isCollapsed = !$scope.isCollapsed;
@@ -47,7 +47,7 @@ angular.module('mean.system').controller('HeaderController', function ($scope,$w
   };
 });
 
-angular.module('mean.system').controller('headCtrl', function($scope, Page) {
+angular.module('mean.system').controller('HeadCtrl', function($scope, Page) {
 	$scope.getTitle = Page.getTitle;
 	$scope.getDescription = Page.getDescription;
 	$scope.getKeywords = Page.getKeywords;
