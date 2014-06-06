@@ -8,7 +8,7 @@ angular.module('mean.auth').factory('Auth',function($http, $cookieStore, $window
 	return {
 		//create user
 		create: function(user, success, error) {
-			$http.post('users', user).success(function(user) {
+			$http.post('/users', user).success(function(user) {
 				angular.copy(user, currentUser);
 				success(user);
 			}).error(error);

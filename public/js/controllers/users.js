@@ -2,6 +2,7 @@ angular.module('mean.users').controller('UsersController', function($scope,$loca
 	$scope.crawler = Page.isCrawler();
 	$scope.user = {};
 	$scope.vcRecaptcha = {};
+  $scope.errors = [];
 
 	$scope.signIn = function() {
 		Auth.login($scope.user, function() {
@@ -10,9 +11,14 @@ angular.module('mean.users').controller('UsersController', function($scope,$loca
 		},
 		function(data,status,headers) {
 			if(status === 400){
-				$scope.message = data.message;
-				$scope.showMessage = true;
+				$scope.errors = data.errors;
 			}
+      else{
+        $scope.errors.push({
+          message: 'Unknown server error. Please try again.'
+        });
+      }
+      $scope.showErrors = true;
 		});
 	};
 
@@ -24,10 +30,15 @@ angular.module('mean.users').controller('UsersController', function($scope,$loca
 		function(data,status,headers) {
 			if(status === 400){
 				$scope.errors = data.errors;
-				$scope.showErrors = true;
-				//Reload recaptcha
-				$scope.vcRecaptcha.service.reload();
 			}
+      else {
+        $scope.errors.push({
+          message: 'Unknown server error. Please try again.'
+        });
+      }
+      $scope.showErrors = true;
+      //Reload recaptcha
+      $scope.vcRecaptcha.service.reload();
 		});
 	};
 });

@@ -6,9 +6,14 @@
 			<a href="/auth/twitter" rel="nofollow" target="_self"><img src="/img/icons/twitter.png"></a>
 			<a href="/auth/google" rel="nofollow" target="_self"><img src="/img/icons/google.png"></a></div>
     <div class="col-sm-12">
-			<div class="row" ng-show="showMessage">
+			<div class="row" ng-show="showErrors">
         <div class="fade in alert alert-danger col-sm-4 col-sm-offset-2">
-          <button type="button" class="close" ng-click="showMessage = false">×</button><strong ng-bind="message"></strong>
+          <button type="button" class="close" ng-click="showErrors = false">×</button>
+          <ul class="list-unstyled">
+            <li ng-repeat="error in errors">
+              <strong ng-bind="error.message"></strong>
+            </li>
+          </ul>
         </div>
       </div>
       <form action="/signin" method="post" class="signup form-horizontal ng-pristine ng-valid" ng-submit="signIn()" onsubmit="return false;">
@@ -34,4 +39,3 @@
     </div>
   </div>
 </section>
-
