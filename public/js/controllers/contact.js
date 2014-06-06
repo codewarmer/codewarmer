@@ -1,6 +1,7 @@
 angular.module('mean.contact').controller('contactCtrl', function ($scope, $http, Page) {
   $scope.vcRecaptcha = {};
   $scope.crawler = Page.isCrawler();
+  $scope.alerts = [];
 
   $scope.send = function () {
     $scope.msg.recaptcha = $scope.vcRecaptcha.service.data();
@@ -15,10 +16,15 @@ angular.module('mean.contact').controller('contactCtrl', function ($scope, $http
     error(function (data, status) {
       if(status === 400){
         $scope.alerts = data.errors;
-        $scope.alertClass = 'alert-danger';
-        $scope.showAlerts = true;
-        $scope.vcRecaptcha.service.reload();
       }
+      else {
+        $scope.alerts.push({
+          message: 'Unexpected server error. Please try again.'
+        });
+      }
+      $scope.alertClass = 'alert-danger';
+      $scope.showAlerts = true;
+      $scope.vcRecaptcha.service.reload();
     });
   };
 });
