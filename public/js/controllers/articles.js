@@ -20,7 +20,7 @@ angular.module('mean.articles').controller('ArticlesController', function ($scop
                    { name: 'document', items: [ 'PageBreak', 'Source', 'pbckcode' ] },
                    { name: 'pbckcode' }],
 		extraPlugins: 'pbckcode',
-		pbckcode: {'highlighter': 'PRETTIFY', 'modes': [['BASH','sh'], ['HTML', 'html'], ['CSS', 'css'], ['PHP', 'php'], ['JS', 'javascript']]}
+		pbckcode: {'highlighter': 'PRETTIFY', 'modes': [['BASH','sh'], ['HTML', 'html'], ['CSS', 'css'], ['PHP', 'php'], ['JS', 'javascript'], ['JAVA', 'java']]}
 	};
 
   function findOne() {
